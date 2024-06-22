@@ -2,14 +2,11 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
  content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
+ darkMode: ['class'],
  theme: {
   extend: {
-   backgroundImage: {
-    'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-    'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-   },
    colors: {
-    'fg-primary': 'var(--fg-primary)',
+    'fg-primary': 'rgb(30, 34, 39)',
     'bg-primary': 'var(--bg-primary)',
     'fg-secondary': 'var(--fg-secondary)',
     'bg-secondary': 'var(--bg-secondary)',
@@ -20,6 +17,7 @@ const config: Config = {
     'var-magenta': 'var(--magenta)',
     'var-cyan': 'var(--cyan)',
     'var-cyan-light': 'var(--cyan-light)',
+    'var-cyan-trans': 'var(--cyan-trans)',
     accent: 'var(--accent)',
     'var-grey-dark': 'var(--grey-dark)',
     'var-grey-mid': 'var(--grey-mid)',

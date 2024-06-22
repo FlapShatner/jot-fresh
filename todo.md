@@ -6,3 +6,5 @@
 - more specific validation errors
 - check if email is already in use
 - header
+- switch to validate with zod/valibot
+- search box popup like a command palette
