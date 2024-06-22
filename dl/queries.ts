@@ -1,11 +1,11 @@
 import db from '@/drizzle/db'
-import { NewUser, User, users } from '@/drizzle/schema'
+import { NewUser, User, userTable } from '@/drizzle/schema'
 
 export const userData = {
  getAll: async () => {
-  return await db.query.users.findMany()
+  return await db.query.userTable.findMany()
  },
  insertUser: async (user: NewUser): Promise<User[]> => {
-  return db.insert(users).values(user).returning()
+  return db.insert(userTable).values(user).returning()
  },
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { cn } from '@/lib/cn'
-import { inter, caveat, dmSans } from '@/fonts'
+import { cn } from '@/lib'
+import { inter, caveat, dmSans, sono } from '@/fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
  return (
   <html lang='en'>
-   <body className={cn(inter.variable, caveat.variable, dmSans.variable, 'font-dmSans')}>{children}</body>
+   <body className={cn(inter.variable, caveat.variable, dmSans.variable, sono.variable, 'font-dmSans dark')}>{children}</body>
   </html>
  )
 }

@@ -3,29 +3,70 @@
 @tailwind utilities;
 
 :root {
-  --foreground-hsl: 213, 13%, 14%;
-  --background-hsl: 211, 24%, 80%;
+  --purp: hsl(272, 32%, 45%);
+  --fg: #1e2227;
+  --fg-sec: #23272e;
+  --bg: #fff;
+  --bg-sec: #c0ccd8;
+  --red-l: #e06c75;
+  --red-d: #be5046;
+  --yellow-l: #e5c07b;
+  --yellow-d: #d19a66;
+  --fg-primary: var(--fg);
+  --fg-secondary: var(--fg-sec);
+  --bg-secondary: var(--bg-sec);
+  --bg-primary: var(--bg);
+  --green: #98c379;
+  --blue: #61afef;
+  --magenta: #c678dd;
+  --cyan: #56b6c2;
+  --cyan-light: #85E3EF;
+  --red: var(--red-d);
+  --yellow: var(--yellow-d);
+  --grey-dark: #4b5263;
+  --grey-mid: #5c6370;
+  --grey-light: #abb2bf;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-hsl: 0, 0%, 100%;
-    --background-hsl: 213, 13%, 14%;
-    --accent-hsl: 272, 32%, 45%;
+    --fg-primary: var(--bg);
+    --fg-secondary: var(--bg-sec);
+    --bg-primary: var(--fg);
+    --bg-secondary: var(--fg-sec);
+    --red: var(--red-l);
+    --yellow: var(--yellow-l);
   }
 }
 
 .colors-swatches {
-  --accent: hsl(272, 32%, 45%);
-  --fg-darkmode: #fff;
-  --bg-darkmode: #1f2328;
-  --fg-lightmode: #1f2328;
+  --purp: hsl(272, 32%, 45%);
+  /* --bg-test:#282c34; */
+  --fg-primary: #fff;
+  --bg-primary: #1c191f;
+  --fg-lightmode: #1c191f;
   --bg-lightmode: #c0ccd8;
 }
 
 body {
-  color: hsl(var(--foreground-hsl));
-  background: hsl(var(--background-hsl));
+  color: var(--fg-primary);
+  background: var(--bg-primary);
+
+}
+
+.input-wrap:has(input:not(:placeholder-shown))>label,
+.input-wrap:has(input:focus)>label {
+  transform: translateX(36px);
+}
+
+.ph-show:not(:placeholder-shown),
+.ph-show:focus-within {
+  caret-color: currentColor;
+
+  &+svg {
+    transform: translateY(-36px);
+
+  }
 }
 
 @layer utilities {
