@@ -1,18 +1,25 @@
 import React from 'react'
-import { cn } from '@/lib'
 
 type Props = {
  children: React.ReactNode
- color: string
- bgColor?: string
+ variant: 'primary' | 'secondary'
+ onClick?: () => void
 }
 
-function Button({ children, color, bgColor }: Props) {
- const bg = `bg-${bgColor}`
- const border = `border-${color}`
- const text = `text-${color}`
-
- return <div className={cn('mt-8 px-4 py-3 rounded-md  border-2  font-semibold', bg, border, text)}>{children}</div>
+const Button = ({ children, variant }: Props) => {
+ if (variant === 'primary') {
+  return (
+   <button className='w-full bg-var-cyan rounded-md py-2 mt-4 text-bg-primary font-bold border-2 border-var-cyan hover:bg-var-cyan-light hover:border-var-cyan-light transition-all'>
+    {children}
+   </button>
+  )
+ } else if (variant === 'secondary') {
+  return (
+   <button className='w-full bg-var-cyan rounded-md py-2 mt-4 text-bg-primary font-bold border-2 border-var-cyan hover:bg-var-cyan-light hover:border-var-cyan-light transition-all'>
+    {children}
+   </button>
+  )
+ }
 }
 
 export default Button

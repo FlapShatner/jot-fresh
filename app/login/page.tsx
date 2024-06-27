@@ -1,10 +1,14 @@
 import Link from 'next/link'
 import React from 'react'
+import Input from '@/components/input'
+import PwInput from '@/components/pw-input'
+
 import { Home, Avatar, Lock } from '../icons'
+import Button from '@/components/button'
 
 function Login() {
  return (
-  <div className='flex min-h-screen flex-col items-center justify-between p-4'>
+  <div className='flex min-h-screen flex-col items-center justify-between p-4 '>
    <Link
     href='/'
     className='w-full flex justify-end'>
@@ -15,48 +19,19 @@ function Login() {
      //  action={}
      autoComplete='off'
      className='flex flex-col items-center gap-4 justify-center font-sono transition-all'>
-     <div className='flex flex-col group input-wrap '>
-      <label
-       className='group-hover:translate-x-9 transition-transform'
-       htmlFor='username'>
-       Email or username
-      </label>
-
-      <div className='flex items-center relative '>
-       <input
-        className='text-fg-primary bg-bg-primary border-2 border-var-cyan py-1 px-2 text-lg rounded-md hover:bg-bg-secondary transition-all ph-show caret-transparent'
-        type='text'
-        name='username'
-        placeholder=' '
-       />
-
-       <Avatar className='text-fg-secondary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />
-      </div>
-     </div>
-
-     <div className='flex flex-col group input-wrap '>
-      <label
-       className='group-hover:translate-x-9 transition-transform'
-       htmlFor='password'>
-       Password
-      </label>
-
-      <div className='flex items-center relative group'>
-       <input
-        className='text-fg-primary bg-bg-primary border-2 border-var-cyan py-1 px-2 text-lg rounded-md hover:bg-bg-secondary transition-all ph-show caret-transparent'
-        required
-        type='password'
-        name='password'
-        placeholder=''
-       />
-
-       <Lock className='text-fg-secondary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />
-      </div>
-     </div>
-
-     <button className='w-full bg-var-cyan rounded-md py-2 mt-4 text-bg-primary font-bold border-2 border-var-cyan hover:bg-var-cyan-light hover:border-var-cyan-light transition-all'>
-      Sign In
-     </button>
+     <Input
+      icon={<Avatar className='text-fg-primary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />}
+      inputAttributes={{ type: 'text', name: 'username', placeholder: ' ' }}
+      label='Email or username'
+      labelAttributes={{ htmlFor: 'username' }}
+     />
+     <PwInput
+      icon={<Lock className='text-fg-primary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />}
+      inputAttributes={{ name: 'password', placeholder: '' }}
+      label='Password'
+      labelAttributes={{ htmlFor: 'password' }}
+     />
+     <Button variant='primary'>Sign In</Button>
     </form>
     <Link
      className='underline text-var-cyan mt-12 text-sm'
