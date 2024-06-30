@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   --alpha: .2;
   --purp: rgb(117, 78, 151);
@@ -28,6 +30,8 @@
   --grey-dark: rgb(75, 82, 99);
   --grey-mid: rgb(92, 99, 112);
   --grey-light: rgb(171, 178, 191);
+  --accent: rgb(93, 177, 189);
+  --accent-light: rgb(133, 227, 239);
 }
 
 /* .dark {

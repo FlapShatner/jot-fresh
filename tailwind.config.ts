@@ -19,6 +19,7 @@ const config: Config = {
     'var-cyan-light': 'var(--cyan-light)',
     'var-cyan-trans': 'var(--cyan-trans)',
     accent: 'var(--accent)',
+    'accent-light': 'var(--accent-light)',
     'var-grey-dark': 'var(--grey-dark)',
     'var-grey-mid': 'var(--grey-mid)',
     'var-grey-light': 'var(--grey-light)',

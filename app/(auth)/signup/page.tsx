@@ -3,7 +3,7 @@ import { signup } from '@/actions/auth-actions'
 import { passwordsMatch } from '@/lib'
 import { NewUserInput } from '@/lib/types'
 import Link from 'next/link'
-import { Home, Email, Lock, Avatar } from '../icons'
+import { Home, Email, Lock, Avatar } from '../../icons'
 import Button from '@/components/button'
 import Input from '@/components/input'
 import PwInput from '@/components/pw-input'
@@ -33,7 +33,7 @@ function Signup() {
    <Link
     href='/'
     className='w-full flex justify-end'>
-    <Home className='text-var-cyan text-5xl' />
+    <Home className='text-accent text-3xl hover:text-accent-light' />
    </Link>
    <div className='flex flex-col items-center justify-center w-full h-[calc(100vh-80px)]'>
     <form
@@ -67,7 +67,7 @@ function Signup() {
      <Button variant='primary'>Sign Up</Button>
     </form>
     <Link
-     className='underline text-var-cyan mt-12 text-sm'
+     className='underline text-accent mt-12 text-sm hover:text-accent-light'
      href='/login'>
      Login with an existing account
     </Link>

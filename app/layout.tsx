@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { cn } from '@/lib'
 import { inter, caveat, dmSans, sono } from '@/fonts'
+import 'react-tooltip/dist/react-tooltip.css'
 import './globals.css'
 
 export const metadata: Metadata = {
