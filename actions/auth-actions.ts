@@ -1,3 +1,4 @@
+'use server'
 import { cache } from 'react'
 import { userData } from '@/dl/queries'
 import { isEmail, isAscii, isByteLength } from 'validator'

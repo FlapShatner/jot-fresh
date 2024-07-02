@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
  return (
   <html lang='en'>
-   <body className={cn(inter.variable, caveat.variable, dmSans.variable, sono.variable, 'font-dmSans')}>{children}</body>
+   <body className={cn(inter.variable, caveat.variable, dmSans.variable, sono.variable, 'font-dmSans overflow-hidden')}>{children}</body>
   </html>
  )
 }

@@ -5,10 +5,17 @@ import React from 'react'
 function TooltipWrap({ children, tooltip }: { children: React.ReactNode; tooltip: { id: string; content: string } }) {
  return (
   <div>
-   <a id={tooltip.id}>{children}</a>
+   <div
+    className='flex '
+    id={tooltip.id}>
+    {children}
+   </div>
    <Tooltip
     anchorSelect={`#${tooltip.id}`}
-    place='bottom'
+    noArrow
+    delayShow={200}
+    place='left'
+    style={{ backgroundColor: 'var(--tooltip-bg)', padding: '4px 8px' }}
     variant='dark'
     content={tooltip.content}
    />
