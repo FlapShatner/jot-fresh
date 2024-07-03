@@ -13,7 +13,7 @@ function ProfileMenu({ user, showMenu, setShowMenu }: { user: User | null; showM
  return (
   <div
    className={cn(
-    'flex flex-col absolute w-32 right-2 -bottom-[92px] px-2 py-1 bg-bg-secondary rounded-md border border-accent-light shadow-lg profile-menu z-20',
+    'flex flex-col absolute w-32 right-2 -bottom-[92px] px-2 py-1 bg-bg-secondary rounded-md border border-var-cyan-trans shadow-lg profile-menu z-20',
     showMenu ? '' : 'hide-menu'
    )}>
    <TooltipWrap tooltip={{ id: 'username', content: user?.username ?? '' }}>

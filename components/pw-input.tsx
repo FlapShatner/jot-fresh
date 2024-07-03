@@ -24,7 +24,7 @@ function PwInput({ icon, inputAttributes, labelAttributes, label }: Props) {
    <div className='flex items-center relative'>
     <div className='flex items-center relative '>
      <input
-      className='text-fg-primary bg-bg-primary border border-accent py-1 px-2 text-lg rounded-md hover:bg-bg-secondary transition-all ph-show caret-transparent '
+      className='text-fg-primary bg-bg-primary border border-var-cyan-trans py-1 px-2 text-lg rounded-md hover:bg-bg-secondary transition-all ph-show caret-transparent '
       type={showPassword ? 'text' : 'password'}
       {...inputAttributes}
      />
