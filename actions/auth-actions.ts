@@ -63,7 +63,7 @@ export async function signup(newUser: NewUserInput) {
   password_hash,
   id: userId,
  })
- console.log(result)
+ //  console.log(result)
  const session = await lucia.createSession(userId, {})
  const sessionCookie = lucia.createSessionCookie(session.id)
  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)

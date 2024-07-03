@@ -30,6 +30,9 @@ const config: Config = {
     dmSans: ['var(--dm-sans)'],
     sono: ['var(--sono)'],
    },
+   borderRadius: {
+    primary: '8px',
+   },
   },
  },
  plugins: [],

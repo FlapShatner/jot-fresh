@@ -25,16 +25,16 @@ function Signup() {
    password,
   } as NewUserInput
   const result = await signup(newUser)
-  console.log(result)
+  //   console.log(result)
  }
 
  return (
   <div className='flex min-h-screen flex-col items-center justify-between p-4 '>
-   <Link
+   {/* <Link
     href='/'
     className='w-full flex justify-end'>
     <Home className='text-accent text-3xl hover:text-accent-light' />
-   </Link>
+   </Link> */}
    <div className='flex flex-col items-center justify-center w-full h-[calc(100vh-80px)]'>
     <form
      action={addUser}
