@@ -28,5 +28,22 @@ export const sessionTable = pgTable('session', {
  }).notNull(),
 })
 
+export const noteTable = pgTable('note', {
+ id: text('id').primaryKey(),
+ title: text('title').notNull(),
+ content: text('content').notNull(),
+ userId: text('user_id')
+  .references(() => userTable.id, { onDelete: 'cascade' })
+  .notNull(),
+ createdAt: timestamp('createdAt').defaultNow().notNull(),
+ updatedAt: timestamp('updatedAt').defaultNow().notNull(),
+})
+
+export type Note = InferSelectModel<typeof noteTable>
+export type NewNote = InferInsertModel<typeof noteTable>
+
 export type User = InferSelectModel<typeof userTable>
 export type NewUser = InferInsertModel<typeof userTable>
+
+export type UpdateNote = { id: string; title: string; content: string; updatedAt: Date }
+export type CreateNote = { title: string; content: string }

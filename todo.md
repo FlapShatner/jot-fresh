@@ -1,5 +1,6 @@
 # features to add
 
+- add a new note
 - forgot password flow
 - unique email only for forgot password flow
 - profile settings

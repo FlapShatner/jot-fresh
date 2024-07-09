@@ -23,6 +23,7 @@ const config: Config = {
     'var-grey-dark': 'var(--grey-dark)',
     'var-grey-mid': 'var(--grey-mid)',
     'var-grey-light': 'var(--grey-light)',
+    'var-editor-bg': '#282C34',
    },
    fontFamily: {
     caveat: ['var(--caveat)'],
