@@ -7,6 +7,8 @@ import { generateIdFromEntropySize } from 'lucia'
 import type { Session, User } from 'lucia'
 import { ActionResult } from 'next/dist/server/app-render/types'
 
+export type NoteError = { error: string }
+
 export async function createNote(newNote: CreateNote): Promise<ActionResult> {
  const { user, session } = await validateRequest()
  if (!user) {
@@ -14,16 +16,20 @@ export async function createNote(newNote: CreateNote): Promise<ActionResult> {
    error: 'Unauthorized',
   }
  }
- const { title, content } = newNote
- if (!title || !content) {
+ const { content } = newNote
+ let title = newNote.title
+ if (!content) {
   return {
    error: 'Missing required fields.',
   }
  }
- if (!isAscii(title)) {
+ if (title && !isAscii(title)) {
   return {
    error: 'Invalid title.',
   }
+ }
+ if (!title) {
+  title = 'Untitled'
  }
  const noteId = generateIdFromEntropySize(10)
  const result = await noteData.insertNote({
@@ -45,6 +51,18 @@ export async function getNotes(): Promise<ActionResult> {
   }
  }
  const result = await noteData.getAll()
+ return result
+ //  return redirect('/')
+}
+
+export async function getNote(nid: string): Promise<ActionResult> {
+ const { user, session } = await validateRequest()
+ if (!user) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ const result = await noteData.getNoteById(nid)
  return result
  //  return redirect('/')
 }

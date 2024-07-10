@@ -1,6 +1,6 @@
 # features to add
 
-- add a new note
+- show note immediately when added
 - forgot password flow
 - unique email only for forgot password flow
 - profile settings
@@ -10,3 +10,7 @@
 - header
 - switch to validate with zod/valibot
 - search box popup like a command palette
+
+## done
+
+- add a new note

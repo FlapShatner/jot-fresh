@@ -11,7 +11,7 @@ const config: Config = {
     'fg-secondary': 'var(--fg-secondary)',
     'bg-secondary': 'var(--bg-secondary)',
     'var-red': 'var(--red)',
-    'var-yellow': 'var(--yellow)',
+    'var-yellow': 'var(--yellow-l)',
     'var-green': 'var(--green)',
     'var-blue': 'var(--blue)',
     'var-magenta': 'var(--magenta)',
@@ -24,6 +24,7 @@ const config: Config = {
     'var-grey-mid': 'var(--grey-mid)',
     'var-grey-light': 'var(--grey-light)',
     'var-editor-bg': '#282C34',
+    'var-editor-active': '#2E343D',
    },
    fontFamily: {
     caveat: ['var(--caveat)'],
