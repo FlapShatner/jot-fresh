@@ -77,7 +77,8 @@ body {
   color: var(--fg-primary);
 }
 
-.glow {
+.glow,
+.glow-red {
   transition: all 400ms var(--timing-func);
 }
 
@@ -90,6 +91,15 @@ body {
     0px 0px 6px 3px rgb(133, 227, 239, 0.3);
 }
 
+.glow-red:hover {
+  -webkit-box-shadow: 0px 0px 4px 2px rgb(224, 108, 117, 0.4),
+    0px 0px 6px 3px rgb(224, 108, 117, 0.3);
+  -moz-box-shadow: 0px 0px 4px 2px rgb(224, 108, 117, 0.4),
+    0px 0px 6px 3px rgb(224, 108, 117, 0.3);
+  box-shadow: 0px 0px 4px 2px rgb(224, 108, 117, 0.4),
+    0px 0px 6px 3px rgb(224, 108, 117, 0.3);
+}
+
 .profile-menu {
   transform: translateX(0);
   transition: all 400ms var(--timing-func);
@@ -99,11 +109,26 @@ body {
   }
 }
 
+[popover]:popover-open {
+  opacity: 1;
+  transition: display 400ms var(--timing-func), opacity 400ms var(--timing-func);
+}
+
+[popover] {
+  opacity: 0;
+  transition: display 400ms var(--timing-func), opacity 400ms var(--timing-func);
+}
+
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+  }
+}
+
+
 .hide-menu {
   transform: translateX(110%);
   transition: all 400ms var(--timing-func);
-
-
 }
 
 .input-wrap:has(input:not(:placeholder-shown))>label,

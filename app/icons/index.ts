@@ -6,5 +6,8 @@ import { LetsIconsViewFill as EyeOpen } from './eye-open'
 import { LetsIconsViewHideFill as EyeClosed } from './eye-closed'
 import { Login } from './login'
 import { Logout } from './logout'
+import { Trash } from './trash'
+import { Save } from './save'
+import { New } from './new'
 
-export { Avatar, Home, Lock, Email, EyeOpen, EyeClosed, Login, Logout }
+export { Avatar, Home, Lock, Email, EyeOpen, EyeClosed, Login, Logout, Trash, Save, New }

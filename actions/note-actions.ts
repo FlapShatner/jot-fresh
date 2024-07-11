@@ -66,3 +66,15 @@ export async function getNote(nid: string): Promise<ActionResult> {
  return result
  //  return redirect('/')
 }
+
+export async function deleteNote(nid: string): Promise<ActionResult> {
+ const { user, session } = await validateRequest()
+ if (!user) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ const result = await noteData.deleteNoteById(nid)
+ return result
+ //  return redirect('/')
+}

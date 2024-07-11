@@ -1,5 +1,5 @@
 import React from 'react'
-import Editor from '@/components/editor'
+import Editor from '../editor'
 import { redirect } from 'next/navigation'
 import { validateRequest } from '@/actions/auth-actions'
 

@@ -1,16 +1,14 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { useWindowSize, useDebounceValue } from 'usehooks-ts'
 import AceEditor from 'react-ace-builds'
-import { createNote, getNote, NoteError } from '@/actions/note-actions'
-import { Note } from '@/drizzle/schema'
-import { Save } from '@/app/icons/save'
-import TooltipWrap from './header/tooltip'
+import { createNote, getNote } from '@/actions/note-actions'
 
 import 'ace-builds/src-noconflict/mode-typescript'
 import 'ace-builds/src-noconflict/theme-one_dark'
 import 'ace-builds/src-noconflict/ext-language_tools'
-import { NewNote } from '@/drizzle/schema'
+import EditorHeader from './editor-header'
 
 function Editor({ nid }: { nid: string | null }) {
  const [content, setContent] = useState<string>('')
@@ -18,6 +16,8 @@ function Editor({ nid }: { nid: string | null }) {
  const [editorHeight, setEditorHeight] = useState('80vh')
  const { width, height } = useWindowSize()
  const [debouncedHeight] = useDebounceValue(height, 100)
+
+ const router = useRouter()
 
  const handleSave = async () => {
   console.log(content)
@@ -29,9 +29,14 @@ function Editor({ nid }: { nid: string | null }) {
  }
 
  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  console.log(e)
   if (e.key === 's' && e.ctrlKey) {
    e.preventDefault()
    handleSave()
+  }
+  if (e.key === 'n' && e.ctrlKey && e.altKey) {
+   e.preventDefault()
+   router.push('/editor/new')
   }
  }
 
@@ -59,20 +64,11 @@ function Editor({ nid }: { nid: string | null }) {
 
  return (
   <div className='flex flex-col pt-0'>
-   <div className='flex w-full rounded-t-primary bg-bg-secondary justify-between items-center p-1'>
-    <input
-     value={title}
-     onChange={(e) => setTitle(e.target.value)}
-     type='text'
-     placeholder='Untitled'
-     className='text-fg-primary bg-bg-secondary text-xl w-1/2'
-    />
-    <TooltipWrap tooltip={{ id: 'save', content: 'Save (Ctrl+S)' }}>
-     <div onClick={handleSave}>
-      <Save className='text-accent text-xl hover:text-accent-light cursor-pointer mr-1' />
-     </div>
-    </TooltipWrap>
-   </div>
+   <EditorHeader
+    title={title}
+    setTitle={setTitle}
+    handleSave={handleSave}
+   />
    <div onKeyDown={(e) => handleKeyDown(e)}>
     <AceEditor
      mode='typescript'
