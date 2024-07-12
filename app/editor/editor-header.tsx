@@ -1,12 +1,22 @@
 import TooltipWrap from '@/components/header/tooltip'
 import { useParams, useRouter } from 'next/navigation'
-
-import React from 'react'
+import { revalidatePath } from 'next/cache'
+import React, { Suspense } from 'react'
 import { deleteNote } from '@/actions/note-actions'
 import { Save, Trash } from '../icons'
 import DeleteConfirm from '@/components/popover/delete-confirm'
 
-function EditorHeader({ title, setTitle, handleSave }: { title: string; setTitle: React.Dispatch<React.SetStateAction<string>>; handleSave: () => void }) {
+function EditorHeader({
+ title,
+ setTitle,
+ handleSave,
+ isNid,
+}: {
+ title: string
+ setTitle: React.Dispatch<React.SetStateAction<string>>
+ handleSave: () => void
+ isNid: boolean
+}) {
  const router = useRouter()
  const { nid } = useParams()
  const noteId = Array.isArray(nid) ? nid[0] : nid
@@ -21,9 +31,9 @@ function EditorHeader({ title, setTitle, handleSave }: { title: string; setTitle
   <div className='flex w-full rounded-t-primary bg-bg-secondary justify-between items-center p-1'>
    <input
     value={title}
-    onChange={(e) => setTitle(e.target.value)}
+    onChange={() => setTitle(title)}
     type='text'
-    placeholder='Untitled'
+    placeholder={isNid ? '' : 'Untitled'}
     className='text-fg-primary bg-bg-secondary text-xl w-1/2'
    />
    <div className='flex gap-2'>

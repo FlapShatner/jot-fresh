@@ -1,9 +1,9 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense, useDeferredValue } from 'react'
 import { useRouter } from 'next/navigation'
 import { useWindowSize, useDebounceValue } from 'usehooks-ts'
 import AceEditor from 'react-ace-builds'
-import { createNote, getNote } from '@/actions/note-actions'
+import { createNote, getNote, deleteNote } from '@/actions/note-actions'
 
 import 'ace-builds/src-noconflict/mode-typescript'
 import 'ace-builds/src-noconflict/theme-one_dark'
@@ -13,10 +13,9 @@ import EditorHeader from './editor-header'
 function Editor({ nid }: { nid: string | null }) {
  const [content, setContent] = useState<string>('')
  const [title, setTitle] = useState<string>('')
- const [editorHeight, setEditorHeight] = useState('80vh')
+ const [editorHeight, setEditorHeight] = useState('87vh')
  const { width, height } = useWindowSize()
  const [debouncedHeight] = useDebounceValue(height, 100)
-
  const router = useRouter()
 
  const handleSave = async () => {
@@ -29,13 +28,18 @@ function Editor({ nid }: { nid: string | null }) {
  }
 
  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-  console.log(e)
+  //   console.log(e)
   if (e.key === 's' && e.ctrlKey) {
    e.preventDefault()
    handleSave()
   }
   if (e.key === 'n' && e.ctrlKey && e.altKey) {
    e.preventDefault()
+   router.push('/editor/new')
+  }
+  if (e.key === 'e' && e.ctrlKey) {
+   e.preventDefault()
+   if (nid) deleteNote(nid)
    router.push('/editor/new')
   }
  }
@@ -65,34 +69,39 @@ function Editor({ nid }: { nid: string | null }) {
  return (
   <div className='flex flex-col pt-0'>
    <EditorHeader
+    isNid={nid !== null}
     title={title}
     setTitle={setTitle}
     handleSave={handleSave}
    />
    <div onKeyDown={(e) => handleKeyDown(e)}>
-    <AceEditor
-     mode='typescript'
-     theme='one_dark'
-     name='main'
-     onChange={(value) => setContent(value)}
-     fontSize={12}
-     showPrintMargin={false}
-     showGutter={true}
-     height={editorHeight}
-     width={width < 738 ? '100vw' : '70vw'}
-     wrapEnabled={true}
-     highlightActiveLine={true}
-     minLines={10}
-     style={{ borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px' }}
-     value={content}
-     setOptions={{
-      enableBasicAutocompletion: true,
-      enableLiveAutocompletion: false,
-      enableSnippets: false,
-      showLineNumbers: true,
-      tabSize: 2,
-     }}
-    />
+    <div
+     style={{ width: width < 738 ? '100vw' : '70vw', height: editorHeight }}
+     className='bg-var-editor-bg rounded-b-primary'>
+     <AceEditor
+      mode='typescript'
+      theme='one_dark'
+      name='main'
+      onChange={(value) => setContent(value)}
+      fontSize={12}
+      showPrintMargin={false}
+      showGutter={true}
+      height={editorHeight}
+      width={width < 738 ? '100vw' : '70vw'}
+      wrapEnabled={true}
+      highlightActiveLine={true}
+      minLines={10}
+      style={{ borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px' }}
+      value={content}
+      setOptions={{
+       enableBasicAutocompletion: true,
+       enableLiveAutocompletion: false,
+       enableSnippets: false,
+       showLineNumbers: true,
+       tabSize: 2,
+      }}
+     />
+    </div>
    </div>
   </div>
  )

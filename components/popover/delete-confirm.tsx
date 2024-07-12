@@ -17,12 +17,12 @@ function DeleteConfirm({ handleClick }: { handleClick: () => void }) {
    <div className='flex gap-2'>
     <button
      onClick={handleClose}
-     className='border-2 border-accent px-2 text-accent hover:border-accent-light hover:text-accent-light rounded-md'>
+     className='px-2 text-fg-secondary border-2 border-transparent rounded-md hover:bg-red-500/20 hover:border-red-500/10'>
      Cancel
     </button>
     <button
      onClick={handleClick}
-     className='bg-var-red px-2 text-white  hover:bg-red-400 border-2 border-var-red hover:border-red-400   rounded-md'>
+     className='bg-var-red px-2 text-white  hover:bg-red-400 border-2 border-var-red hover:border-red-400 rounded-md'>
      Delete
     </button>
    </div>

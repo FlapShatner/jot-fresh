@@ -6,6 +6,7 @@ import { isAscii } from 'validator'
 import { generateIdFromEntropySize } from 'lucia'
 import type { Session, User } from 'lucia'
 import { ActionResult } from 'next/dist/server/app-render/types'
+import { revalidatePath } from 'next/cache'
 
 export type NoteError = { error: string }
 
@@ -39,8 +40,8 @@ export async function createNote(newNote: CreateNote): Promise<ActionResult> {
   id: noteId,
  })
  console.log(result)
+ revalidatePath('/')
  return result
- //  return redirect('/')
 }
 
 export async function getNotes(): Promise<ActionResult> {
@@ -75,6 +76,7 @@ export async function deleteNote(nid: string): Promise<ActionResult> {
   }
  }
  const result = await noteData.deleteNoteById(nid)
+ revalidatePath('/')
  return result
  //  return redirect('/')
 }
