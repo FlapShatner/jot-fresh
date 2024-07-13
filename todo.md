@@ -1,16 +1,25 @@
-# features to add
+## features to add
 
-- show note immediately when added
+- automatically download and cache data likely to be accessed
 - forgot password flow
 - unique email only for forgot password flow
 - profile settings
 - more specific validation errors
-- check if email is already in use
 - user input feedback
-- header
 - switch to validate with zod/valibot
+- check if email is already in use
 - search box popup like a command palette
 
 ## done
 
 - add a new note
+- show note immediately when added
+- header
+
+## ideas
+
+- #### auto create user
+  - allow use to write a note without signin
+  - when saving, ask for email address
+  - send password or magic link to user email address
+  - automatically sign in so user can just continue using app
