@@ -3,7 +3,8 @@ import React, { useState, useEffect, Suspense, useDeferredValue } from 'react'
 import { useRouter } from 'next/navigation'
 import { useWindowSize, useDebounceValue } from 'usehooks-ts'
 import AceEditor from 'react-ace-builds'
-import { createNote, getNote, deleteNote } from '@/actions/note-actions'
+import { createNote, getNote, deleteNote, updateNote } from '@/actions/note-actions'
+import type { Note } from '@/drizzle/schema'
 
 import 'ace-builds/src-noconflict/mode-typescript'
 import 'ace-builds/src-noconflict/theme-one_dark'
@@ -11,6 +12,7 @@ import 'ace-builds/src-noconflict/ext-language_tools'
 import EditorHeader from './editor-header'
 
 function Editor({ nid }: { nid: string | null }) {
+ const [authorId, setAuthorId] = useState<string | null>(null)
  const [content, setContent] = useState<string>('')
  const [title, setTitle] = useState<string>('')
  const [editorHeight, setEditorHeight] = useState('87vh')
@@ -20,11 +22,36 @@ function Editor({ nid }: { nid: string | null }) {
 
  const handleSave = async () => {
   console.log(content)
-  const result = await createNote({
+  if (!!nid && !!authorId) {
+   const result: Note | { error: string } = await updateNote({
+    userId: authorId,
+    id: nid,
+    title,
+    content,
+    updatedAt: new Date(),
+   })
+   console.log(result)
+   return
+  }
+  const result: Note | { error: string } = await createNote({
    title,
    content,
   })
-  console.log(await result)
+  if ('error' in result) {
+   alert(result.error)
+   return
+  }
+ }
+
+ const handleDelete = async () => {
+  if (!nid || !authorId) return
+  const data = {
+   id: nid,
+   userId: authorId,
+  }
+  const result = await deleteNote(data)
+  router.push('/editor/new')
+  console.log(result)
  }
 
  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -39,7 +66,7 @@ function Editor({ nid }: { nid: string | null }) {
   }
   if (e.key === 'e' && e.ctrlKey) {
    e.preventDefault()
-   if (nid) deleteNote(nid)
+   handleDelete()
    router.push('/editor/new')
   }
  }
@@ -52,14 +79,15 @@ function Editor({ nid }: { nid: string | null }) {
  useEffect(() => {
   async function getNoteData() {
    if (nid) {
-    const note = await getNote(nid)
-    if (note.error) {
+    const note: Note | { error: string } = await getNote(nid)
+    if ('error' in note) {
      alert(note.error)
      return
     }
     if (note) {
      setContent(note.content)
      setTitle(note.title)
+     setAuthorId(note.userId)
     }
    }
   }
@@ -73,6 +101,7 @@ function Editor({ nid }: { nid: string | null }) {
     title={title}
     setTitle={setTitle}
     handleSave={handleSave}
+    handleDelete={handleDelete}
    />
    <div onKeyDown={(e) => handleKeyDown(e)}>
     <div

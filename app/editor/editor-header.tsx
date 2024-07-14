@@ -10,28 +10,24 @@ function EditorHeader({
  title,
  setTitle,
  handleSave,
+ handleDelete,
  isNid,
 }: {
  title: string
  setTitle: React.Dispatch<React.SetStateAction<string>>
  handleSave: () => void
+ handleDelete: () => void
  isNid: boolean
 }) {
  const router = useRouter()
  const { nid } = useParams()
  const noteId = Array.isArray(nid) ? nid[0] : nid
 
- const handleDelete = async () => {
-  const result = await deleteNote(noteId)
-  router.push('/editor/new')
-  console.log(result)
- }
-
  return (
   <div className='flex w-full rounded-t-primary bg-bg-secondary justify-between items-center p-1'>
    <input
     value={title}
-    onChange={() => setTitle(title)}
+    onChange={(e) => setTitle(e.target.value)}
     type='text'
     placeholder={isNid ? '' : 'Untitled'}
     className='text-fg-primary bg-bg-secondary text-xl w-1/2'
