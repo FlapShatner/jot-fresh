@@ -41,25 +41,25 @@ function Signup() {
      autoComplete='off'
      className='flex flex-col items-center gap-4 justify-center font-sono transition-all'>
      <Input
-      icon={<Avatar className='text-fg-primary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />}
+      icon={<Avatar className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
       inputAttributes={{ type: 'text', name: 'username', placeholder: ' ' }}
       label='Username'
       labelAttributes={{ htmlFor: 'username' }}
      />
      <Input
-      icon={<Email className='text-fg-primary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />}
+      icon={<Email className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
       inputAttributes={{ type: 'email', name: 'email', placeholder: ' ' }}
       label='Email'
       labelAttributes={{ htmlFor: 'email' }}
      />
      <PwInput
-      icon={<Lock className='text-fg-primary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />}
+      icon={<Lock className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
       inputAttributes={{ name: 'password', placeholder: '' }}
       label='Password'
       labelAttributes={{ htmlFor: 'password' }}
      />
      <PwInput
-      icon={<Lock className='text-fg-primary text-2xl absolute left-2 group-hover:-translate-y-9 transition-transform' />}
+      icon={<Lock className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
       inputAttributes={{ name: 'confirmPassword', placeholder: '' }}
       label='Confirm Password'
       labelAttributes={{ htmlFor: 'confirmPassword' }}

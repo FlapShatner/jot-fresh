@@ -17,7 +17,7 @@ function PwInput({ icon, inputAttributes, labelAttributes, label }: Props) {
  return (
   <div className='flex flex-col group input-wrap '>
    <label
-    className='group-hover:translate-x-9 transition-transform text-fg-primary'
+    className='pl-9 transition-transform text-fg-primary'
     {...labelAttributes}>
     {label}
    </label>

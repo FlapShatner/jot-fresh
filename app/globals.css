@@ -131,10 +131,11 @@ body {
   transition: all 400ms var(--timing-func);
 }
 
+/* 
 .input-wrap:has(input:not(:placeholder-shown))>label,
 .input-wrap:has(input:focus)>label {
   transform: translateX(36px);
-}
+} */
 
 .ph-show:not(:placeholder-shown),
 .ph-show:focus-within {
