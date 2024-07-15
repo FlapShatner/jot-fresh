@@ -38,6 +38,7 @@ export const noteData = {
   return db.update(notesTable).set(note).where(eq(notesTable.id, note.id)).returning()
  },
  deleteNoteById: async (id: string): Promise<Note[]> => {
-  return db.delete(notesTable).where(eq(notesTable.id, id)).returning()
+  const result = await db.delete(notesTable).where(eq(notesTable.id, id)).returning()
+  return result
  },
 }

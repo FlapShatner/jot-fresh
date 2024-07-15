@@ -1,6 +1,5 @@
 ## features to add
 
-- handle saving an already saved file
 - download file option
 - copy file contents option
 - folders
@@ -21,6 +20,7 @@
 - add a new note
 - show note immediately when added
 - header
+- handle saving an already saved file
 
 ## ideas
 

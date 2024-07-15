@@ -49,9 +49,13 @@ function Editor({ nid }: { nid: string | null }) {
    id: nid,
    userId: authorId,
   }
-  const result = await deleteNote(data)
+  const result: Note[] | { error: string } = await deleteNote(data)
   router.push('/editor/new')
-  console.log(result)
+  if ('error' in result) {
+   alert(result.error)
+   return
+  }
+  console.log(result[0].id, 'deleted')
  }
 
  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {

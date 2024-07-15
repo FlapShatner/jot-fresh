@@ -1,6 +1,16 @@
 import { pgTable, serial, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
 import { InferSelectModel, InferInsertModel, relations } from 'drizzle-orm'
-import { use } from 'react'
+
+export const sessionTable = pgTable('session', {
+ id: text('id').primaryKey(),
+ userId: text('user_id')
+  .notNull()
+  .references(() => usersTable.id),
+ expiresAt: timestamp('expires_at', {
+  withTimezone: true,
+  mode: 'date',
+ }).notNull(),
+})
 
 export const usersTable = pgTable(
  'users',
@@ -20,23 +30,32 @@ export const usersTable = pgTable(
 
 export const usersRelations = relations(usersTable, ({ many }) => ({
  notes: many(notesTable),
+ folders: many(foldersTable),
 }))
 
-export const sessionTable = pgTable('session', {
+export const foldersTable = pgTable('folders', {
  id: text('id').primaryKey(),
+ name: text('name').notNull(),
  userId: text('user_id')
-  .notNull()
-  .references(() => usersTable.id),
- expiresAt: timestamp('expires_at', {
-  withTimezone: true,
-  mode: 'date',
- }).notNull(),
+  .references(() => usersTable.id, { onDelete: 'cascade' })
+  .notNull(),
+
+ createdAt: timestamp('createdAt').defaultNow().notNull(),
 })
+
+export const foldersRelations = relations(foldersTable, ({ one, many }) => ({
+ user: one(usersTable, {
+  fields: [foldersTable.userId],
+  references: [usersTable.id],
+ }),
+ notes: many(notesTable),
+}))
 
 export const notesTable = pgTable('notes', {
  id: text('id').primaryKey(),
  title: text('title').notNull(),
  content: text('content').notNull(),
+ folderId: text('folder_id').references(() => foldersTable.id, { onDelete: 'cascade' }),
  userId: text('user_id')
   .references(() => usersTable.id, { onDelete: 'cascade' })
   .notNull(),
@@ -48,6 +67,10 @@ export const notesRelations = relations(notesTable, ({ one }) => ({
  user: one(usersTable, {
   fields: [notesTable.userId],
   references: [usersTable.id],
+ }),
+ folder: one(foldersTable, {
+  fields: [notesTable.folderId],
+  references: [foldersTable.id],
  }),
 }))
 
