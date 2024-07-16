@@ -1,5 +1,6 @@
 ## features to add
 
+- fix delete dialog fade out
 - download file option
 - copy file contents option
 - folders

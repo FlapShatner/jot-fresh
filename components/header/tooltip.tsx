@@ -2,7 +2,7 @@
 import { Tooltip } from 'react-tooltip'
 import React from 'react'
 
-function TooltipWrap({ children, tooltip }: { children: React.ReactNode; tooltip: { id: string; content: string } }) {
+function TooltipWrap({ children, tooltip, place = 'left' }: { children: React.ReactNode; tooltip: { id: string; content: string }; place?: 'left' | 'right' }) {
  return (
   <div>
    <div
@@ -14,7 +14,7 @@ function TooltipWrap({ children, tooltip }: { children: React.ReactNode; tooltip
     anchorSelect={`#${tooltip.id}`}
     noArrow
     delayShow={200}
-    place='left'
+    place={place}
     style={{ backgroundColor: 'var(--tooltip-bg)', padding: '4px 8px' }}
     variant='dark'
     content={tooltip.content}

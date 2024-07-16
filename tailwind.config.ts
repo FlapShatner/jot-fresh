@@ -14,6 +14,7 @@ const config: Config = {
     'var-yellow': 'var(--yellow-l)',
     'var-green': 'var(--green)',
     'var-blue': 'var(--blue)',
+    'var-blue-light': 'var(--blue-light)',
     'var-magenta': 'var(--magenta)',
     'var-cyan': 'var(--cyan)',
     'var-cyan-light': 'var(--cyan-light)',

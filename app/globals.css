@@ -21,6 +21,7 @@
   --bg-secondary: var(--bg-sec);
   --green: rgb(152, 195, 121);
   --blue: rgb(97, 175, 239);
+  --blue-light: rgb(160, 212, 255);
   --magenta: rgb(198, 120, 221);
   --cyan: rgb(86, 182, 194);
   --cyan-light: rgb(133, 227, 239);
@@ -109,25 +110,37 @@ body {
   }
 }
 
-[popover]:popover-open {
-  opacity: 1;
-  transition: display 400ms var(--timing-func), opacity 400ms var(--timing-func);
-}
-
 [popover] {
   opacity: 0;
+  transition-behavior: allow-discrete;
   transition: display 400ms var(--timing-func), opacity 400ms var(--timing-func);
 }
 
-@starting-style {
-  [popover]:popover-open {
+[popover]:popover-open {
+  opacity: 1;
+  transition-behavior: allow-discrete;
+  transition: display 400ms var(--timing-func), opacity 400ms var(--timing-func);
+
+  @starting-style {
     opacity: 0;
+    transition-behavior: allow-discrete;
+    transition: display 400ms var(--timing-func), opacity 400ms var(--timing-func);
+
   }
 }
+
+/* @starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transition-behavior: allow-discrete;
+    transition: display 400ms var(--timing-func), opacity 400ms var(--timing-func);
+  }
+} */
 
 
 .hide-menu {
   transform: translateX(110%);
+  transition-behavior: allow-discrete;
   transition: all 400ms var(--timing-func);
 }
 

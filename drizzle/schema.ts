@@ -39,7 +39,7 @@ export const foldersTable = pgTable('folders', {
  userId: text('user_id')
   .references(() => usersTable.id, { onDelete: 'cascade' })
   .notNull(),
-
+ parentId: text('parent_id'),
  createdAt: timestamp('createdAt').defaultNow().notNull(),
 })
 
@@ -47,6 +47,10 @@ export const foldersRelations = relations(foldersTable, ({ one, many }) => ({
  user: one(usersTable, {
   fields: [foldersTable.userId],
   references: [usersTable.id],
+ }),
+ parent: one(foldersTable, {
+  fields: [foldersTable.parentId],
+  references: [foldersTable.id],
  }),
  notes: many(notesTable),
 }))
