@@ -1,5 +1,23 @@
 import React from 'react'
-import { Avatar, Email, EyeOpen, EyeClosed, Login, Logout, Trash, Save, New, NewNote, FolderNew, Folder, Home, Lock, Close, Check } from '@/app/icons'
+import {
+ Avatar,
+ Email,
+ EyeOpen,
+ EyeClosed,
+ Login,
+ Logout,
+ Trash,
+ Save,
+ New,
+ NewNote,
+ FolderNew,
+ Folder,
+ Home,
+ Lock,
+ Close,
+ Check,
+ FolderOpen,
+} from '@/app/icons'
 
 function Page() {
  return (
@@ -68,6 +86,10 @@ function Page() {
     <li>
      <Check />
      Check
+    </li>
+    <li>
+     <FolderOpen />
+     FolderOpen
     </li>
    </ul>
   </div>

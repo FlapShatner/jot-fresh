@@ -11,12 +11,12 @@ function NavItem({ note }: { note: Note }) {
  return (
   <div
    key={note.id}
-   className={cn('flex w-full items-center px-2', isActive ? 'bg-var-editor-active' : '')}>
+   className={cn('flex w-full items-center pl-[28px] pr-2', isActive ? 'bg-var-editor-active' : '')}>
    <Link
     prefetch={true}
     className='w-full'
     href={`/editor/${note.id}`}>
-    <div className={cn('text-fg-primary text-sm w-full', isActive ? 'text-var-yellow' : '')}>{note.title}</div>
+    <div className={cn('text-fg-primary text-sm w-full truncate', isActive ? 'text-var-yellow' : '')}>{note.title}</div>
    </Link>
   </div>
  )

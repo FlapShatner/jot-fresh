@@ -13,13 +13,13 @@ function EditorNavHeader() {
      <NewNote className='text-accent text-lg hover:text-accent-light cursor-pointer' />
     </Link>
    </TooltipWrap>
-   <TooltipWrap tooltip={{ id: 'folder', content: 'New folder (Ctrl+Alt+F)' }}>
-    <button
-     className='text-var-blue'
-     popoverTarget='folderpo'>
-     <FolderNew className='text-var-blue text-[1.4em] hover:text-var-blue-light cursor-pointer' />
-    </button>
-   </TooltipWrap>
+   {/* <TooltipWrap tooltip={{ id: 'folder', content: 'New folder (Ctrl+Alt+F)' }}> */}
+   <button
+    className='text-var-blue'
+    popoverTarget='folderpo'>
+    <FolderNew className='text-var-blue text-[1.4em] hover:text-var-blue-light cursor-pointer' />
+   </button>
+   {/* </TooltipWrap> */}
    <NameFolder />
   </div>
  )

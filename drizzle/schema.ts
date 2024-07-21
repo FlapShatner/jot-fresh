@@ -1,5 +1,5 @@
-import { pgTable, serial, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core'
-import { InferSelectModel, InferInsertModel, relations } from 'drizzle-orm'
+import { pgTable, serial, text, timestamp, uniqueIndex, boolean } from 'drizzle-orm/pg-core'
+import { InferSelectModel, InferInsertModel, relations, is } from 'drizzle-orm'
 
 export const sessionTable = pgTable('session', {
  id: text('id').primaryKey(),
@@ -40,6 +40,7 @@ export const foldersTable = pgTable('folders', {
   .references(() => usersTable.id, { onDelete: 'cascade' })
   .notNull(),
  parentId: text('parent_id'),
+ isRoot: boolean('is_root').default(false).notNull(),
  createdAt: timestamp('createdAt').defaultNow().notNull(),
 })
 
@@ -86,3 +87,6 @@ export type NewUser = InferInsertModel<typeof usersTable>
 
 export type UpdateNote = { id: string; userId: string; title: string; content: string; updatedAt: Date }
 export type CreateNote = { title: string; content: string }
+
+export type Folder = InferSelectModel<typeof foldersTable>
+export type NewFolder = InferInsertModel<typeof foldersTable>

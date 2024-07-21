@@ -1,9 +1,10 @@
 ## features to add
 
-- fix delete dialog fade out
+- filter by date range
+- alphabet minimap
+- folders
 - download file option
 - copy file contents option
-- folders
 - about section in menu
 - create settings table per user
 - automatically download and cache data likely to be accessed

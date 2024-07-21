@@ -14,5 +14,6 @@ import { Folder } from './folder'
 import { NewNote } from './new-note'
 import { Close } from './close'
 import { Check } from './check'
+import { CiFolderOpen as FolderOpen } from './folder-open'
 
-export { Avatar, Home, Lock, Email, EyeOpen, EyeClosed, Login, Logout, Trash, Save, New, FolderNew, Folder, NewNote, Close, Check }
+export { Avatar, Home, Lock, Email, EyeOpen, EyeClosed, Login, Logout, Trash, Save, New, FolderNew, Folder, NewNote, Close, Check, FolderOpen }

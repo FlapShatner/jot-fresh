@@ -10,6 +10,7 @@ import { generateIdFromEntropySize } from 'lucia'
 import type { Session, User } from 'lucia'
 import { NewUserInput } from '@/lib/types'
 import { ActionResult } from 'next/dist/server/app-render/types'
+import { createRootFolder } from './folder-actions'
 
 const usernameLength = { min: 3, max: 30 }
 
@@ -63,6 +64,7 @@ export async function signup(newUser: NewUserInput) {
   password_hash,
   id: userId,
  })
+ await createRootFolder({ userId: userId })
  //  console.log(result)
  const session = await lucia.createSession(userId, {})
  const sessionCookie = lucia.createSessionCookie(session.id)
