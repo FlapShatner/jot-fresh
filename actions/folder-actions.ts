@@ -1,11 +1,12 @@
 'use server'
-import { NewFolder } from '@/drizzle/schema'
+import { Folder, NewFolder } from '@/drizzle/schema'
 import { isAscii } from 'validator'
 import { validateRequest } from './auth-actions'
 import { generateIdFromEntropySize } from 'lucia'
 import { folderData } from '@/dl/queries'
 import { revalidatePath } from 'next/cache'
 import { ActionResult } from 'next/dist/server/app-render/types'
+import { get } from 'http'
 
 export async function createFolder(newFolder: { name: string; parentId?: string }) {
  const { user, session } = await validateRequest()
@@ -24,7 +25,13 @@ export async function createFolder(newFolder: { name: string; parentId?: string 
    error: 'Invalid title.',
   }
  }
- const rootFolderId: string = await getRootFolderId()
+
+ const rootFolderId = await getRootFolderId()
+ if (typeof rootFolderId === 'object' && 'error' in rootFolderId) {
+  return {
+   error: 'No root folder found',
+  }
+ }
 
  const folderId = generateIdFromEntropySize(10)
  const newFolderData: NewFolder = {
@@ -68,19 +75,8 @@ export async function getFolders(): Promise<ActionResult> {
  //  return redirect('/')
 }
 
-export async function getRootFolderId(): Promise<ActionResult> {
- const { user, session } = await validateRequest()
- if (!user) {
-  return {
-   error: 'Unauthorized',
-  }
- }
- const result = await folderData.getAll({ userId: user.id })
- if (!result.length) {
-  return {
-   error: 'No root folder found',
-  }
- }
+export async function getRootFolderId() {
+ const result: Folder[] = await getFolders()
  const rootFolder = result.find((folder) => folder.isRoot)
  if (!rootFolder) {
   return {
@@ -88,4 +84,26 @@ export async function getRootFolderId(): Promise<ActionResult> {
   }
  }
  return rootFolder.id
+}
+
+export async function getFolder(id: string): Promise<ActionResult> {
+ const { user, session } = await validateRequest()
+ if (!user) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ const result = await folderData.getFolderById(id)
+ if (!result) {
+  return {
+   error: 'Folder not found.',
+  }
+ }
+ if (user.id !== result.userId) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ return result
+ //  return redirect('/')
 }

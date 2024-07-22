@@ -52,8 +52,10 @@ export const foldersRelations = relations(foldersTable, ({ one, many }) => ({
  parent: one(foldersTable, {
   fields: [foldersTable.parentId],
   references: [foldersTable.id],
+  relationName: 'parentChild',
  }),
  notes: many(notesTable),
+ folders: many(foldersTable, { relationName: 'parentChild' }),
 }))
 
 export const notesTable = pgTable('notes', {
@@ -89,4 +91,5 @@ export type UpdateNote = { id: string; userId: string; title: string; content: s
 export type CreateNote = { title: string; content: string }
 
 export type Folder = InferSelectModel<typeof foldersTable>
+export type FolderWithNotesAndFolders = Folder & { notes: Note[]; folders: Folder[] }
 export type NewFolder = InferInsertModel<typeof foldersTable>

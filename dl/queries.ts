@@ -1,5 +1,5 @@
 import db from '@/drizzle/db'
-import { NewNote, NewUser, Note, notesTable, User, usersTable, UpdateNote, Folder, foldersTable, NewFolder } from '@/drizzle/schema'
+import { NewNote, NewUser, Note, notesTable, User, usersTable, UpdateNote, Folder, foldersTable, NewFolder, FolderWithNotesAndFolders } from '@/drizzle/schema'
 import { eq } from 'drizzle-orm'
 
 export const userData = {
@@ -53,5 +53,10 @@ export const folderData = {
  },
  insertFolder: async (folder: NewFolder): Promise<Folder[]> => {
   return db.insert(foldersTable).values(folder).returning()
+ },
+
+ getFolderById: async (id: string): Promise<FolderWithNotesAndFolders | null> => {
+  const folder = await db.query.foldersTable.findFirst({ where: eq(foldersTable.id, id), with: { folders: true, notes: true } })
+  return folder ?? null
  },
 }

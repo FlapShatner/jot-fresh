@@ -3,7 +3,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import React, { Suspense } from 'react'
 import { deleteNote } from '@/actions/note-actions'
-import { Save, Trash } from '../icons'
+import { Save, Settings, Trash } from '../icons'
 import DeleteConfirm from '@/components/popover/delete-confirm'
 
 function EditorHeader({
@@ -38,10 +38,19 @@ function EditorHeader({
       <Trash className='text-var-red text-lg  cursor-pointer hover:text-red-400' />
      </button>
     </TooltipWrap>
-    <TooltipWrap tooltip={{ id: 'save', content: 'Save (Ctrl+S)' }}>
+    <TooltipWrap
+     place='top-start'
+     tooltip={{ id: 'save', content: 'Save (Ctrl+S)' }}>
      <div onClick={handleSave}>
       <Save className='text-accent text-xl hover:text-accent-light cursor-pointer mr-1' />
      </div>
+    </TooltipWrap>
+    <TooltipWrap
+     place='top-start'
+     tooltip={{ id: 'settings', content: 'Settings' }}>
+     <button popoverTarget='settingspo'>
+      <Settings className='text-var-grey-mid text-xl cursor-pointer hover:text-var-grey-light' />
+     </button>
     </TooltipWrap>
    </div>
    <DeleteConfirm handleClick={handleDelete} />

@@ -17,6 +17,7 @@ import {
  Close,
  Check,
  FolderOpen,
+ Settings,
 } from '@/app/icons'
 
 function Page() {
@@ -90,6 +91,10 @@ function Page() {
     <li>
      <FolderOpen />
      FolderOpen
+    </li>
+    <li>
+     <Settings />
+     Settings
     </li>
    </ul>
   </div>

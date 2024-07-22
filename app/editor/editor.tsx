@@ -82,6 +82,12 @@ function Editor({ nid }: { nid: string | null }) {
 
  useEffect(() => {
   async function getNoteData() {
+   if (!nid) {
+    setContent('')
+    setTitle('')
+    setAuthorId(null)
+    return
+   }
    if (nid) {
     const note: Note | { error: string } = await getNote(nid)
     if ('error' in note) {
