@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import { cn } from '@/lib/cn'
 import Link from 'next/link'
 import LogoutBtn from './logout-btn'
-import TooltipWrap from '../header/tooltip'
 import { logout } from '@/actions/auth-actions'
 import { Avatar } from '@/app/icons'
 import { User } from 'lucia'
@@ -17,9 +16,7 @@ function ProfileMenu({ user, showMenu, setShowMenu }: { user: User | null; showM
     'flex flex-col absolute w-32 right-2 -bottom-[120px] px-2 py-1 bg-bg-secondary rounded-md border border-var-cyan-trans shadow-lg profile-menu z-20',
     showMenu ? '' : 'hide-menu'
    )}>
-   <TooltipWrap tooltip={{ id: 'username', content: user?.username ?? '' }}>
-    <p className='pb-1 mb-2 border-b border-fg-secondary truncate w-full cursor-pointer'>{user?.username}</p>
-   </TooltipWrap>
+   <p className='pb-1 mb-2 border-b border-fg-secondary truncate w-full cursor-pointer'>{user?.username}</p>
    <div className='flex flex-col gap-1'>
     <Link
      className='flex gap-1 items-center hover:text-accent-light'

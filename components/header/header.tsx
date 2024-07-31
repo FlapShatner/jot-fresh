@@ -1,7 +1,6 @@
 import React from 'react'
 import { Login } from '@/app/icons'
 import { getColors } from '@/actions/colors'
-import TooltipWrap from './tooltip'
 import UserAvatar from './avatar'
 import Link from 'next/link'
 import type { User } from 'lucia'
@@ -20,9 +19,7 @@ async function Header({ user }: { user: User | null }) {
     ) : (
      <div />
      //  <Link href={'/login'}>
-     //   <TooltipWrap tooltip={{ id: 'login', content: 'Log in' }}>
      //    <Login className='text-accent text-3xl hover:text-accent-light cursor-pointer' />
-     //   </TooltipWrap>
      //  </Link>
     )}
    </div>

@@ -13,6 +13,7 @@
   "studio": "drizzle-kit studio"
  },
  "dependencies": {
+  "@floating-ui/react": "^0.26.20",
   "@lucia-auth/adapter-drizzle": "^1.0.7",
   "@next/env": "^14.2.4",
   "@node-rs/argon2": "^1.8.3",
@@ -29,7 +30,6 @@
   "react": "^18.3.1",
   "react-ace-builds": "^7.4.1",
   "react-dom": "^18.3.1",
-  "react-tooltip": "^5.27.0",
   "tailwind-merge": "^2.3.0",
   "usehooks-ts": "^3.1.0",
   "validator": "^13.12.0"

@@ -129,6 +129,14 @@ body {
   }
 }
 
+#folderpo:popover-open {
+  position: absolute;
+  inset: unset;
+  top: 7rem;
+  left: 12rem;
+  z-index: 100;
+}
+
 /* @starting-style {
   [popover]:popover-open {
     opacity: 0;
