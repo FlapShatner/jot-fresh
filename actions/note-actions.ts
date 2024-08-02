@@ -128,11 +128,12 @@ export async function updateNote(newNote: UpdateNote): Promise<ActionResult> {
  const result = await noteData.updateNote({
   title,
   content,
+  folderId: newNote.folderId,
   userId: user.id,
   id: noteId,
   updatedAt: updatedAt,
  })
- //  console.log(result)
- revalidatePath('/')
+ console.log('updateNote', result)
+ revalidatePath(`/`)
  return result
 }

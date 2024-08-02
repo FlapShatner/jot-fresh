@@ -14,6 +14,7 @@ import EditorHeader from './editor-header'
 function Editor({ nid }: { nid: string | null }) {
  const [authorId, setAuthorId] = useState<string | null>(null)
  const [content, setContent] = useState<string>('')
+ const [folderId, setFolderId] = useState<string | null>(null)
  const [title, setTitle] = useState<string>('')
  const [editorHeight, setEditorHeight] = useState('87vh')
  const { width, height } = useWindowSize()
@@ -25,6 +26,7 @@ function Editor({ nid }: { nid: string | null }) {
   if (!!nid && !!authorId) {
    const result: Note | { error: string } = await updateNote({
     userId: authorId,
+    folderId: folderId ?? '',
     id: nid,
     title,
     content,
@@ -98,6 +100,7 @@ function Editor({ nid }: { nid: string | null }) {
      setContent(note.content)
      setTitle(note.title)
      setAuthorId(note.userId)
+     setFolderId(note.folderId)
     }
    }
   }

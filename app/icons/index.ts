@@ -16,5 +16,26 @@ import { Close } from './close'
 import { Check } from './check'
 import { CiFolderOpen as FolderOpen } from './folder-open'
 import { CiSettings as Settings } from './settings'
+import { CiFolderUpload as FolderMove } from './folder-move'
 
-export { Avatar, Home, Lock, Email, EyeOpen, EyeClosed, Login, Logout, Trash, Save, New, FolderNew, Folder, NewNote, Close, Check, FolderOpen, Settings }
+export {
+ Avatar,
+ Home,
+ Lock,
+ Email,
+ EyeOpen,
+ EyeClosed,
+ Login,
+ Logout,
+ Trash,
+ Save,
+ New,
+ FolderNew,
+ Folder,
+ NewNote,
+ Close,
+ Check,
+ FolderOpen,
+ Settings,
+ FolderMove,
+}

@@ -44,13 +44,14 @@ export const noteData = {
 }
 
 export const folderData = {
- getAll: async ({ userId }: { userId: string }): Promise<Folder[]> => {
+ getAll: async ({ userId }: { userId: string }): Promise<FolderWithNotesAndFolders[] | []> => {
   const userWithFolders = await db.query.usersTable.findFirst({
    where: eq(usersTable.id, userId),
-   with: { folders: true },
+   with: { folders: { with: { notes: true, folders: true } } },
   })
   return userWithFolders?.folders ?? []
  },
+
  insertFolder: async (folder: NewFolder): Promise<Folder[]> => {
   return db.insert(foldersTable).values(folder).returning()
  },

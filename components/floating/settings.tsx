@@ -9,11 +9,19 @@ function Settings() {
  const [isOpen, setIsOpen] = useState(false)
  const { refs, floatingStyles, context } = useFloating<HTMLButtonElement>({
   open: isOpen,
-  placement: 'bottom',
+  placement: 'bottom-start',
   onOpenChange: setIsOpen,
-  middleware: [offset(10), flip(), shift()],
+  middleware: [
+   offset({
+    mainAxis: 10,
+   }),
+   flip(),
+   shift(),
+  ],
   whileElementsMounted: autoUpdate,
  })
+
+ //  console.log('settings rendered', Date.now())
 
  const click = useClick(context)
  const dismiss = useDismiss(context)
@@ -31,8 +39,13 @@ function Settings() {
      {...getFloatingProps()}
      ref={refs.setFloating}
      style={{ ...styles, ...floatingStyles }}
-     className='flex flex-col p-2 gap-2 items-center  rounded-primary bg-bg-secondary border border-fg-secondary text-fg-secondary z-50'>
-     <p className='text-fg-secondary text-sm'>Note Settings</p>
+     className='flex flex-col  items-center  rounded-primary bg-bg-primary border border-fg-secondary text-fg-secondary z-50'>
+     <div className='w-full py-1 text-sm flex items-center border-b border-fg-secondary  rounded-t-primary'>
+      <div className='min-w-[30px]'>
+       <SettingsIcon className='m-auto' />
+      </div>
+      Note Settings
+     </div>
      <FolderSelect />
     </div>
    )}
