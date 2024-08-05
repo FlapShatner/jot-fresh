@@ -39,7 +39,7 @@ export async function createNote(newNote: CreateNote): Promise<ActionResult> {
   userId: user.id,
   id: noteId,
  })
- console.log(result)
+ //  console.log(result)
  revalidatePath('/')
  return result
 }

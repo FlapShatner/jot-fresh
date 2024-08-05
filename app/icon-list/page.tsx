@@ -18,6 +18,9 @@ import {
  Check,
  FolderOpen,
  Settings,
+ Note,
+ FolderMove,
+ FolderEdit,
 } from '@/app/icons'
 
 function Page() {
@@ -95,6 +98,18 @@ function Page() {
     <li>
      <Settings />
      Settings
+    </li>
+    <li>
+     <Note />
+     Note
+    </li>
+    <li>
+     <FolderMove />
+     FolderMove
+    </li>
+    <li>
+     <FolderEdit />
+     FolderEdit
     </li>
    </ul>
   </div>

@@ -22,7 +22,7 @@ function Editor({ nid }: { nid: string | null }) {
  const router = useRouter()
 
  const handleSave = async () => {
-  console.log(content)
+  //   console.log(content)
   if (!!nid && !!authorId) {
    const result: Note | { error: string } = await updateNote({
     userId: authorId,
@@ -32,7 +32,7 @@ function Editor({ nid }: { nid: string | null }) {
     content,
     updatedAt: new Date(),
    })
-   console.log(result)
+   //    console.log(result)
    return
   }
   const result: Note | { error: string } = await createNote({
@@ -57,7 +57,7 @@ function Editor({ nid }: { nid: string | null }) {
    alert(result.error)
    return
   }
-  console.log(result[0].id, 'deleted')
+  //   console.log(result[0].id, 'deleted')
  }
 
  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {

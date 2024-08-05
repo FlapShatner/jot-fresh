@@ -1,5 +1,5 @@
 'use server'
-import { Folder, NewFolder } from '@/drizzle/schema'
+import { Folder, NewFolder, UpdateFolder } from '@/drizzle/schema'
 import { isAscii } from 'validator'
 import { validateRequest } from './auth-actions'
 import { generateIdFromEntropySize } from 'lucia'
@@ -44,7 +44,7 @@ export async function createFolder(newFolder: { name: string; parentId?: string 
   newFolderData.parentId = newFolder.parentId
  }
  const result = await folderData.insertFolder(newFolderData)
- console.log(result)
+ //  console.log(result)
  revalidatePath('/')
  return result
 }
@@ -58,7 +58,7 @@ export async function createRootFolder(args: { userId: string }): Promise<Action
   isRoot: true,
  }
  const result = await folderData.insertFolder(newFolderData)
- console.log(result)
+ //  console.log(result)
  revalidatePath('/')
  return result
 }
@@ -106,4 +106,32 @@ export async function getFolder(id: string): Promise<ActionResult> {
  }
  return result
  //  return redirect('/')
+}
+
+export async function updateFolder(newFolder: UpdateFolder): Promise<ActionResult> {
+ const { user, session } = await validateRequest()
+ if (!user) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ if (user.id !== newFolder.userId) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ const { name, parentId } = newFolder
+ let newFolderData: UpdateFolder = {
+  name,
+  parentId,
+  userId: user.id,
+  id: newFolder.id,
+ }
+ if (parentId) {
+  newFolderData.parentId = parentId
+ }
+ const result = await folderData.updateFolder(newFolderData)
+ //  console.log(result)
+ revalidatePath('/')
+ return result
 }

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getFolders } from '@/actions/folder-actions'
 import { updateNote, getNote } from '@/actions/note-actions'
-import { Folder, Note } from '@/drizzle/schema'
+import { Folder, FolderWithNotesAndFolders, Note } from '@/drizzle/schema'
 import { Folder as FolderIcon } from '@/app/icons'
-import { revalidatePath } from 'next/cache'
+
 function FolderList({ nid }: { nid: string | string[] | null }) {
  const [folders, setFolders] = useState<Folder[]>([])
+
  useEffect(() => {
   async function getFolderData() {
    if (!folders.length) {
@@ -36,14 +37,14 @@ function FolderList({ nid }: { nid: string | string[] | null }) {
  if (!folders.length) return null
  return (
   <div className='flex flex-col text-sm'>
-   {folders.map((folder) => {
+   {folders.map((item) => {
     return (
      <div
-      onClick={() => handleClick(folder)}
+      onClick={() => handleClick(item)}
       className='flex items-center gap-1 px-2 cursor-pointer hover:bg-var-editor-active rounded-primary'
-      key={folder.id}>
+      key={item.id}>
       <FolderIcon className='text-fg-primary ' />
-      {folder.name}
+      {item.name}
      </div>
     )
    })}

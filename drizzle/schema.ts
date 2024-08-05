@@ -93,3 +93,4 @@ export type CreateNote = { title: string; content: string }
 export type Folder = InferSelectModel<typeof foldersTable>
 export type FolderWithNotesAndFolders = Folder & { notes?: Note[]; folders?: FolderWithNotesAndFolders[] }
 export type NewFolder = InferInsertModel<typeof foldersTable>
+export type UpdateFolder = { id: string; name: string; parentId: string; userId: string }

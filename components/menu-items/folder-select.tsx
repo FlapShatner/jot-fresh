@@ -4,9 +4,11 @@ import { cn } from '@/lib/cn'
 import { useFloating, offset, flip, shift, autoUpdate, useClick, useDismiss, useInteractions, useTransitionStyles } from '@floating-ui/react'
 import { useParams, usePathname } from 'next/navigation'
 import { Settings as SettingsIcon, FolderMove } from '@/app/icons'
-import FolderList from '../menu-items/folder-list'
+import FolderList from './folder-list'
+import { FolderWithNotesAndFolders } from '@/drizzle/schema'
+import RenameFolderList from './rename-folder-list'
 
-function FolderSelect() {
+function FolderSelect({ folder }: { folder?: FolderWithNotesAndFolders }) {
  const [isOpen, setIsOpen] = useState(false)
  const { nid } = useParams()
  const pathname = usePathname()
@@ -29,7 +31,7 @@ function FolderSelect() {
    <div
     className={cn(
      'py-1 pr-2 text-sm flex items-center bg-bg-secondary rounded-primary cursor-pointer hover:bg-var-editor-active',
-     isNew && 'opacity-30 pointer-events-none'
+     isNew && !folder && 'opacity-30 pointer-events-none'
     )}
     ref={refs.setReference}
     {...getReferenceProps()}>
@@ -43,7 +45,7 @@ function FolderSelect() {
     {...getFloatingProps()}
     ref={refs.setFloating}
     style={{ ...styles, ...floatingStyles }}>
-    <FolderList nid={nid} />
+    {!!folder ? <RenameFolderList folder={folder} /> : <FolderList nid={nid} />}
    </div>
   </>
  )

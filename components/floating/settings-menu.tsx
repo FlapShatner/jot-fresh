@@ -2,10 +2,11 @@
 import React, { useState } from 'react'
 import { useFloating, offset, flip, shift, autoUpdate, useClick, useDismiss, useInteractions, useTransitionStyles } from '@floating-ui/react'
 import { Settings as SettingsIcon } from '@/app/icons'
-import FolderSelect from './folder-select'
+import { cn } from '@/lib/cn'
+import FolderSelect from '../menu-items/folder-select'
 import { Folder } from '@/drizzle/schema'
 
-function Settings() {
+function SettingsMenu({ title, children, target, className = '' }: { title: string; children: React.ReactNode; target: React.ReactNode; className?: string }) {
  const [isOpen, setIsOpen] = useState(false)
  const { refs, floatingStyles, context } = useFloating<HTMLButtonElement>({
   open: isOpen,
@@ -30,9 +31,10 @@ function Settings() {
  return (
   <>
    <div
+    className={className}
     ref={refs.setReference}
     {...getReferenceProps()}>
-    <SettingsIcon className='text-fg-secondary text-xl cursor-pointer hover:text-fg-primary' />
+    {target}
    </div>
    {isMounted && (
     <div
@@ -40,17 +42,17 @@ function Settings() {
      ref={refs.setFloating}
      style={{ ...styles, ...floatingStyles }}
      className='flex flex-col  items-center  rounded-primary bg-bg-primary border border-fg-secondary text-fg-secondary z-50'>
-     <div className='w-full py-1 text-sm flex items-center border-b border-fg-secondary  rounded-t-primary'>
+     <div className='w-full py-1 pr-2 text-sm flex items-center border-b border-fg-secondary  rounded-t-primary'>
       <div className='min-w-[30px]'>
        <SettingsIcon className='m-auto' />
       </div>
-      Note Settings
+      {title}
      </div>
-     <FolderSelect />
+     {children}
     </div>
    )}
   </>
  )
 }
 
-export default Settings
+export default SettingsMenu

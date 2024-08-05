@@ -17,6 +17,8 @@ import { Check } from './check'
 import { CiFolderOpen as FolderOpen } from './folder-open'
 import { CiSettings as Settings } from './settings'
 import { CiFolderUpload as FolderMove } from './folder-move'
+import { CiFileBlank as Note } from './note'
+import { CiFolderEdit as FolderEdit } from './folder-edit'
 
 export {
  Avatar,
@@ -38,4 +40,6 @@ export {
  FolderOpen,
  Settings,
  FolderMove,
+ FolderEdit,
+ Note,
 }

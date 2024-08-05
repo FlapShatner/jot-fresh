@@ -3,8 +3,9 @@ import { useParams, useRouter } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { deleteNote } from '@/actions/note-actions'
 import DeleteConfirm from '@/components/floating/delete-confirm'
-import { Save, Trash } from '../icons'
-import Settings from '@/components/floating/settings'
+import { Save, Trash, Settings as SettingsIcon } from '../icons'
+import SettingsMenu from '@/components/floating/settings-menu'
+import FolderSelect from '@/components/menu-items/folder-select'
 
 function EditorHeader({
  title,
@@ -37,7 +38,11 @@ function EditorHeader({
     <div onClick={handleSave}>
      <Save className='text-accent text-xl hover:text-accent-light cursor-pointer ' />
     </div>
-    <Settings />
+    <SettingsMenu
+     title='Note Settings'
+     target={<SettingsIcon className='text-fg-secondary text-xl cursor-pointer hover:text-fg-primary' />}>
+     <FolderSelect />
+    </SettingsMenu>
    </div>
   </div>
  )

@@ -8,7 +8,7 @@ function EditorNavHeader() {
  return (
   <div className='relative flex w-full rounded-t-primary bg-bg-secondary justify-end items-center h-9 p-1 px-2 gap-2'>
    <Link href='/editor/new'>
-    <NewNote className='text-accent text-lg hover:text-accent-light cursor-pointer' />
+    <NewNote className='text-accent text-[1.4em] hover:text-accent-light cursor-pointer' />
    </Link>
    <NameFolder />
   </div>
