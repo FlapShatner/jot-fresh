@@ -3,10 +3,7 @@ import React from 'react'
 import NavFolder from './nav-folder'
 import NavItem from './nav-item'
 
-function NavTree({ folders, notes, folderId }: { folders: FolderPlus[]; notes: Note[]; folderId: string | null }) {
- const rootFolder = folders.find((folder) => folder.isRoot)
- const rootId = rootFolder ? rootFolder.id : ''
- const isRoot = !folderId || folderId === rootId
+async function NavTree({ folders, notes, folderId }: { folders: FolderPlus[]; notes: Note[]; folderId: string }) {
  return (
   <div className='flex flex-col flex-grow items-start'>
    {folders.map((folder) => {
@@ -18,7 +15,6 @@ function NavTree({ folders, notes, folderId }: { folders: FolderPlus[]; notes: N
     )
    })}
    {notes.map((note) => {
-    if (isRoot && !!note.folderId && note.folderId !== rootId) return null
     return (
      <NavItem
       key={note.id}

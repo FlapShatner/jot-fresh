@@ -1,3 +1,4 @@
+import { getRootFolder } from '@/actions/folder-actions'
 import db from '@/drizzle/db'
 import {
  NewNote,
@@ -67,6 +68,11 @@ export const folderData = {
 
  insertFolder: async (folder: NewFolder): Promise<Folder[]> => {
   return db.insert(foldersTable).values(folder).returning()
+ },
+
+ getRootFolder: async (): Promise<FolderWithNotesAndFolders | null> => {
+  const rootFolder = await db.query.foldersTable.findFirst({ where: eq(foldersTable.isRoot, true), with: { folders: true, notes: true } })
+  return rootFolder ?? null
  },
 
  getFolderById: async (id: string): Promise<FolderWithNotesAndFolders | null> => {

@@ -1,10 +1,12 @@
 ## currently
 
-- only show nested folders inside parents
-- show notes in nested folders
+- close and open folders in tree
+- persist order in tree
+- delete folders
 
 ## features to add
 
+- fold and unfold all folders from header
 - filter by date range
 - alphabet minimap
 - download file option
@@ -20,13 +22,6 @@
 - check if email is already in use
 - search box popup like a command palette
 
-## done
-
-- unique email only for forgot password flow
-- folders
-- add a new note
-- show note immediately when added
-- header
 - handle saving an already saved file
 
 ## ideas
@@ -45,3 +40,14 @@
     - auto save
     - overwrite or save new
   - language / syntax highlighting
+
+## done
+
+- show notes in nested folders
+
+- unique email only for forgot password flow
+- folders
+- add a new note
+- show note immediately when added
+- header
+- only show nested folders inside parents
