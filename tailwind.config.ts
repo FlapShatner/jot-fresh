@@ -36,6 +36,10 @@ const config: Config = {
    borderRadius: {
     primary: '8px',
    },
+   spacing: {
+    nav: '256px',
+    'nav-cnt': '236px',
+   },
   },
  },
  plugins: [],

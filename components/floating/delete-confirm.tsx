@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Trash } from '@/app/icons'
 import { useFloating, offset, flip, shift, autoUpdate, useClick, useDismiss, useInteractions, useTransitionStyles } from '@floating-ui/react'
 
-function DeleteConfirm({ handleClick }: { handleClick: () => void }) {
+function DeleteConfirm({ handleClick, target }: { handleClick: () => void; target: React.ReactNode }) {
  const [isOpen, setIsOpen] = useState(false)
  const { refs, floatingStyles, context } = useFloating<HTMLButtonElement>({
   open: isOpen,
@@ -21,8 +21,8 @@ function DeleteConfirm({ handleClick }: { handleClick: () => void }) {
    <button
     ref={refs.setReference}
     {...getReferenceProps()}
-    className='flex gap-2 items-center'>
-    <Trash className='text-var-red text-lg  cursor-pointer hover:text-red-400' />
+    className='flex gap-2 items-center w-full'>
+    {target}
    </button>
    {isMounted && (
     <div

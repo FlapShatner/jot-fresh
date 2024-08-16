@@ -40,13 +40,16 @@ function FolderSelect({ folder }: { folder?: FolderWithNotesAndFolders }) {
     </div>
     Move to folder
    </div>
-   <div
-    className={cn('flex flex-col px-1  py-1  items-center  rounded-primary bg-bg-secondary border border-fg-secondary text-fg-secondary z-50')}
-    {...getFloatingProps()}
-    ref={refs.setFloating}
-    style={{ ...styles, ...floatingStyles }}>
-    {!!folder ? <RenameFolderList folder={folder} /> : <FolderList nid={nid} />}
-   </div>
+
+   {isMounted && (
+    <div
+     className={cn('flex flex-col px-1  py-1  items-center  rounded-primary bg-bg-secondary border border-fg-secondary text-fg-secondary z-50')}
+     {...getFloatingProps()}
+     ref={refs.setFloating}
+     style={{ ...styles, ...floatingStyles }}>
+     {!!folder ? <RenameFolderList folder={folder} /> : <FolderList nid={nid} />}
+    </div>
+   )}
   </>
  )
 }

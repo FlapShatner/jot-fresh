@@ -1,12 +1,12 @@
 ## currently
 
-- close and open folders in tree
 - persist order in tree
 - delete folders
 
 ## features to add
 
 - fold and unfold all folders from header
+- build more cohesive menu system
 - filter by date range
 - alphabet minimap
 - download file option
@@ -49,5 +49,6 @@
 - folders
 - add a new note
 - show note immediately when added
+- close and open folders in tree
 - header
 - only show nested folders inside parents

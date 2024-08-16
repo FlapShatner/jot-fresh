@@ -33,8 +33,8 @@ function NameFolder() {
    <button
     ref={refs.setReference}
     {...getReferenceProps()}
-    className='text-var-blue'>
-    <FolderNew className='text-var-blue text-[1.4em] hover:text-var-blue-light cursor-pointer' />
+    className='text-var-green'>
+    <FolderNew className='text-var-green text-[1.4em]  cursor-pointer' />
    </button>
    {isMounted && (
     <div

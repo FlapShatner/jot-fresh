@@ -1,22 +1,33 @@
-import { Folder, FolderWithNotesAndFolders as FolderPlus, Note } from '@/drizzle/schema'
+import { Folder, FolderWithNotesAndFolders as FolderPlus, FolderWithNotesAndFolders, Note } from '@/drizzle/schema'
 import React from 'react'
+import FolderSettings from './folder-settings'
+
 import NavFolder from './nav-folder'
 import NavItem from './nav-item'
+import { getRootFolder } from '@/actions/folder-actions'
 
-async function NavTree({ folders, notes, folderId }: { folders: FolderPlus[]; notes: Note[]; folderId: string }) {
+async function NavTree({ folders, notes, folderId, params }: { folders: FolderPlus[]; notes: Note[]; folderId: string; params: { nid: string } }) {
+ const rootFolder: FolderWithNotesAndFolders = await getRootFolder()
+ const isRootChild = rootFolder.id === folderId
  return (
-  <div className='flex flex-col flex-grow items-start'>
+  <div className='flex flex-col flex-grow items-start overflow-hidden'>
    {folders.map((folder) => {
+    const isChild = folder.parentId !== rootFolder.id
     return (
-     <NavFolder
-      key={folder.id}
-      folder={folder}
-     />
+     <div className='w-full flex items-start justify-center'>
+      <NavFolder
+       isChild={isChild}
+       params={params}
+       key={folder.id}
+       folder={folder}
+      />
+     </div>
     )
    })}
    {notes.map((note) => {
     return (
      <NavItem
+      isRootChild={isRootChild}
       key={note.id}
       note={note}
      />

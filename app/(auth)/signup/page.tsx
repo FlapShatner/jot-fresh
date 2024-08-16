@@ -1,6 +1,6 @@
 import React from 'react'
 import { signup } from '@/actions/auth-actions'
-import { passwordsMatch } from '@/lib'
+import { passwordsMatch } from '@/lib/utils'
 import { NewUserInput } from '@/lib/types'
 import Link from 'next/link'
 import { Home, Email, Lock, Avatar } from '../../icons'

@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import { cn } from '@/lib/cn'
 import { updateFolder } from '@/actions/folder-actions'

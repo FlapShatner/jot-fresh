@@ -7,6 +7,7 @@ import { generateIdFromEntropySize } from 'lucia'
 import type { Session, User } from 'lucia'
 import { ActionResult } from 'next/dist/server/app-render/types'
 import { revalidatePath } from 'next/cache'
+import { getRootFolderId } from './folder-actions'
 
 export type NoteError = { error: string }
 
@@ -32,9 +33,16 @@ export async function createNote(newNote: CreateNote): Promise<ActionResult> {
  if (!title) {
   title = 'Untitled'
  }
+ const rootFolderId = await getRootFolderId()
+ if (typeof rootFolderId === 'object' && 'error' in rootFolderId) {
+  return {
+   error: 'No root folder found',
+  }
+ }
  const noteId = generateIdFromEntropySize(10)
  const result = await noteData.insertNote({
   title,
+  folderId: rootFolderId,
   content,
   userId: user.id,
   id: noteId,

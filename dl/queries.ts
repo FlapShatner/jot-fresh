@@ -79,7 +79,12 @@ export const folderData = {
   const folder = await db.query.foldersTable.findFirst({ where: eq(foldersTable.id, id), with: { folders: true, notes: true } })
   return folder ?? null
  },
+
  updateFolder: async (folder: UpdateFolder): Promise<Folder[]> => {
   return db.update(foldersTable).set(folder).where(eq(foldersTable.id, folder.id)).returning()
+ },
+
+ deleteFolder: async (id: string): Promise<Folder[]> => {
+  return db.delete(foldersTable).where(eq(foldersTable.id, id)).returning()
  },
 }

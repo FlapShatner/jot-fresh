@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, Suspense, useDeferredValue } from 'react'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useWindowSize, useDebounceValue } from 'usehooks-ts'
 import AceEditor from 'react-ace-builds'
 import { createNote, getNote, deleteNote, updateNote } from '@/actions/note-actions'
@@ -35,7 +35,7 @@ function Editor({ nid }: { nid: string | null }) {
    //    console.log(result)
    return
   }
-  const result: Note | { error: string } = await createNote({
+  const result: Note[] | { error: string } = await createNote({
    title,
    content,
   })
@@ -43,6 +43,8 @@ function Editor({ nid }: { nid: string | null }) {
    alert(result.error)
    return
   }
+  router.push(`/editor/${result[0].id}`)
+  console.log(result)
  }
 
  const handleDelete = async () => {
@@ -108,7 +110,7 @@ function Editor({ nid }: { nid: string | null }) {
  }, [nid])
 
  return (
-  <div className='flex flex-col pt-0'>
+  <div className='flex flex-col pt-0 '>
    <EditorHeader
     isNid={nid !== null}
     title={title}
@@ -118,7 +120,7 @@ function Editor({ nid }: { nid: string | null }) {
    />
    <div onKeyDown={(e) => handleKeyDown(e)}>
     <div
-     style={{ width: width < 738 ? '100vw' : '70vw', height: editorHeight }}
+     style={{ width: '70vw', height: editorHeight }}
      className='bg-var-editor-bg rounded-b-primary'>
      <AceEditor
       mode='typescript'

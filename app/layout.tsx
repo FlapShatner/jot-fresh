@@ -1,7 +1,7 @@
 import { Header } from '@/components'
 import { validateRequest } from '@/actions/auth-actions'
 import type { Metadata } from 'next'
-import { cn } from '@/lib'
+import { cn } from '@/lib/cn'
 import { inter, caveat, dmSans, sono } from '@/fonts'
 import './globals.css'
 

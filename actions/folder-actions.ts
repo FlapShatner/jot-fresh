@@ -150,3 +150,28 @@ export async function updateFolder(newFolder: UpdateFolder): Promise<ActionResul
  revalidatePath('/')
  return result
 }
+
+export async function deleteFolder(folder: Folder): Promise<ActionResult> {
+ const { user, session } = await validateRequest()
+ if (!user) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ if (user.id !== folder.userId) {
+  return {
+   error: 'Unauthorized',
+  }
+ }
+ const { id, isRoot } = folder
+ if (isRoot) {
+  return {
+   error: 'Cannot delete root folder',
+  }
+ }
+
+ const result = await folderData.deleteFolder(id)
+ revalidatePath('/')
+ //  console.log(result)
+ return result
+}
