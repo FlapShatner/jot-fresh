@@ -14,11 +14,12 @@ async function NavTree({ folders, notes, folderId, params }: { folders: FolderPl
    {folders.map((folder) => {
     const isChild = folder.parentId !== rootFolder.id
     return (
-     <div className='w-full flex items-start justify-center'>
+     <div
+      key={folder.id}
+      className='w-full flex items-start justify-center'>
       <NavFolder
        isChild={isChild}
        params={params}
-       key={folder.id}
        folder={folder}
       />
      </div>
@@ -36,5 +37,5 @@ async function NavTree({ folders, notes, folderId, params }: { folders: FolderPl
   </div>
  )
 }
-
+// modify for push
 export default NavTree
