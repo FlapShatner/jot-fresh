@@ -1,5 +1,6 @@
 'use client'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import { useFolderContext } from '@/app/context/folder-context'
 import { cn } from '@/lib/cn'
 import FolderSettings from './folder-settings'
 import { Folder as FolderIcon, FolderOpen, Settings as SettingsIcon } from '@/app/icons'
@@ -18,11 +19,25 @@ function FolderLabel({ folder, children, childIds }: FolderLabelProps) {
  const [isOpen, setIsOpen] = useState(false)
  const ref = useRef<HTMLDivElement>(null)
 
+ const folderContext = useFolderContext();
+ const areFoldersOpen = folderContext ? folderContext.areFoldersOpen : 'none';
+ const setNone = folderContext ? folderContext.setNone : () => {};
  const { nid } = useParams()
+
+ useEffect(() => {
+    if (areFoldersOpen === 'true') {
+        setIsOpen(true)
+    } else if (areFoldersOpen === 'false') {
+        setIsOpen(false)
+    } else return
+    
+  }, [areFoldersOpen]);
+
 
  const childIsOpen = childIds && childIds.includes(nid as string)
 
  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setNone()
   setIsOpen(!isOpen)
  }
 
