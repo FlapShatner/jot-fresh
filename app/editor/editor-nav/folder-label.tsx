@@ -19,25 +19,23 @@ function FolderLabel({ folder, children, childIds }: FolderLabelProps) {
  const [isOpen, setIsOpen] = useState(false)
  const ref = useRef<HTMLDivElement>(null)
 
- const folderContext = useFolderContext();
- const areFoldersOpen = folderContext ? folderContext.areFoldersOpen : 'none';
- const setNone = folderContext ? folderContext.setNone : () => {};
+ const folderContext = useFolderContext()
+ const areFoldersOpen = folderContext ? folderContext.areFoldersOpen : 'none'
+ //  const setNone = folderContext ? folderContext.setNone : () => {};
  const { nid } = useParams()
 
  useEffect(() => {
-    if (areFoldersOpen === 'true') {
-        setIsOpen(true)
-    } else if (areFoldersOpen === 'false') {
-        setIsOpen(false)
-    } else return
-    
-  }, [areFoldersOpen]);
-
+  if (areFoldersOpen === 'true') {
+   setIsOpen(true)
+  } else if (areFoldersOpen === 'false') {
+   setIsOpen(false)
+  } else return
+ }, [areFoldersOpen])
 
  const childIsOpen = childIds && childIds.includes(nid as string)
 
  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setNone()
+  folderContext?.setNone()
   setIsOpen(!isOpen)
  }
 

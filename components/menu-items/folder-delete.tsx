@@ -18,7 +18,7 @@ function FolderDelete({ folder }: { folder: FolderWithNotesAndFolders }) {
     target={
      <div className={cn('py-1 w-full pr-2 text-sm flex items-center bg-bg-secondary rounded-primary cursor-pointer hover:bg-var-editor-active')}>
       <div className='w-[30px] '>
-       <Trash className='m-auto text-fg-secondary text-base cursor-pointer hover:text-fg-primary' />
+       <Trash className='m-auto text-fg-secondary text-sm cursor-pointer hover:text-fg-primary' />
       </div>
       Delete folder
      </div>

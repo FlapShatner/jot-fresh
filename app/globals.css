@@ -76,7 +76,16 @@
 body {
   background: var(--bg-primary);
   color: var(--fg-primary);
+  scrollbar-width: thin;
 }
+
+.ace_scrollbar-v,
+.ace_scrollbar-inner {
+  /* width: 10px !important; */
+  scrollbar-width: thin;
+  scrollbar-color: #373e49 #282C34;
+}
+
 
 .glow,
 .glow-red {
