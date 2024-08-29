@@ -1,11 +1,10 @@
 ## currently
 
+- syntax select menu item
 - persist order in tree
-- delete folders
 
 ## features to add
 
-- fold and unfold all folders from header
 - build more cohesive menu system
 - filter by date range
 - alphabet minimap
@@ -21,7 +20,6 @@
 - switch to validate with zod/valibot
 - check if email is already in use
 - search box popup like a command palette
-
 - handle saving an already saved file
 
 ## ideas
@@ -44,7 +42,8 @@
 ## done
 
 - show notes in nested folders
-
+- delete folders
+- fold and unfold all folders from header
 - unique email only for forgot password flow
 - folders
 - add a new note

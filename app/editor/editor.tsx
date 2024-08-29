@@ -7,6 +7,24 @@ import { createNote, getNote, deleteNote, updateNote } from '@/actions/note-acti
 import type { Note } from '@/drizzle/schema'
 
 import 'ace-builds/src-noconflict/mode-typescript'
+import 'ace-builds/src-noconflict/mode-javascript'
+import 'ace-builds/src-noconflict/mode-html'
+import 'ace-builds/src-noconflict/mode-css'
+import 'ace-builds/src-noconflict/mode-markdown'
+import 'ace-builds/src-noconflict/mode-json'
+import 'ace-builds/src-noconflict/mode-java'
+import 'ace-builds/src-noconflict/mode-mysql'
+import 'ace-builds/src-noconflict/mode-pgsql'
+import 'ace-builds/src-noconflict/mode-plain_text'
+import 'ace-builds/src-noconflict/mode-powershell'
+import 'ace-builds/src-noconflict/mode-rust'
+import 'ace-builds/src-noconflict/mode-sh'
+import 'ace-builds/src-noconflict/mode-sql'
+import 'ace-builds/src-noconflict/mode-tsx'
+import 'ace-builds/src-noconflict/mode-jsx'
+import 'ace-builds/src-noconflict/mode-toml'
+import 'ace-builds/src-noconflict/mode-yaml'
+
 import 'ace-builds/src-noconflict/theme-one_dark'
 import 'ace-builds/src-noconflict/ext-language_tools'
 import EditorHeader from './editor-header'
@@ -14,6 +32,7 @@ import EditorHeader from './editor-header'
 function Editor({ nid }: { nid: string | null }) {
  const [authorId, setAuthorId] = useState<string | null>(null)
  const [content, setContent] = useState<string>('')
+ const [syntax, setSyntax] = useState<string | null>('markdown')
  const [folderId, setFolderId] = useState<string | null>(null)
  const [title, setTitle] = useState<string>('')
  const [editorHeight, setEditorHeight] = useState('87vh')
@@ -103,6 +122,7 @@ function Editor({ nid }: { nid: string | null }) {
      setTitle(note.title)
      setAuthorId(note.userId)
      setFolderId(note.folderId)
+     setSyntax(note.syntax)
     }
    }
   }
@@ -123,7 +143,7 @@ function Editor({ nid }: { nid: string | null }) {
      style={{ width: '70vw', height: editorHeight }}
      className='bg-var-editor-bg rounded-b-primary'>
      <AceEditor
-      mode='typescript'
+      mode={nid && syntax ? syntax : 'markdown'}
       theme='one_dark'
       name='main'
       onChange={(value) => setContent(value)}

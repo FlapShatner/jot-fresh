@@ -7,6 +7,7 @@ import DeleteConfirm from '@/components/floating/delete-confirm'
 import { Save, Trash, Settings as SettingsIcon } from '../icons'
 import SettingsMenu from '@/components/floating/settings-menu'
 import FolderSelect from '@/components/menu-items/folder-select'
+import SyntaxSelect from '@/components/menu-items/syntax-select'
 
 function EditorHeader({
  title,
@@ -49,6 +50,7 @@ function EditorHeader({
      title='Note Settings'
      target={<SettingsIcon className='text-fg-secondary text-xl cursor-pointer hover:text-fg-primary' />}>
      <FolderSelect />
+     <SyntaxSelect />
     </SettingsMenu>
    </div>
   </div>

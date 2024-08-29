@@ -1,5 +1,6 @@
 import { pgTable, serial, text, timestamp, uniqueIndex, boolean } from 'drizzle-orm/pg-core'
 import { InferSelectModel, InferInsertModel, relations, is } from 'drizzle-orm'
+import { syntax } from '@/data/syntax'
 
 export const sessionTable = pgTable('session', {
  id: text('id').primaryKey(),
@@ -63,6 +64,7 @@ export const notesTable = pgTable('notes', {
  title: text('title').notNull(),
  content: text('content').notNull(),
  folderId: text('folder_id').references(() => foldersTable.id, { onDelete: 'cascade' }),
+ syntax: text('syntax'),
  userId: text('user_id')
   .references(() => usersTable.id, { onDelete: 'cascade' })
   .notNull(),
