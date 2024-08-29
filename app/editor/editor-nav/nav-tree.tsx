@@ -1,7 +1,7 @@
 import { Folder, FolderWithNotesAndFolders as FolderPlus, FolderWithNotesAndFolders, Note } from '@/drizzle/schema'
 import React from 'react'
 import FolderSettings from './folder-settings'
-
+import { cn } from '@/lib/cn'
 import NavFolder from './nav-folder'
 import NavItem from './nav-item'
 import { getRootFolder } from '@/actions/folder-actions'
@@ -10,7 +10,9 @@ async function NavTree({ folders, notes, folderId, params }: { folders: FolderPl
  const rootFolder: FolderWithNotesAndFolders = await getRootFolder()
  const isRootChild = rootFolder.id === folderId
  return (
-  <div className='flex flex-col flex-grow items-start overflow-hidden'>
+  <div
+   style={{ scrollbarWidth: 'thin', scrollbarColor: '#373e49 #282C34' }}
+   className={cn('flex flex-col flex-grow items-start overflow-x-hidden', isRootChild && 'pb-8')}>
    {folders.map((folder) => {
     const isChild = folder.parentId !== rootFolder.id
     return (
@@ -37,5 +39,4 @@ async function NavTree({ folders, notes, folderId, params }: { folders: FolderPl
   </div>
  )
 }
-// modify for push
 export default NavTree

@@ -14,15 +14,15 @@ function NavItem({ note, isRootChild }: { note: Note; isRootChild: boolean }) {
  return (
   <div
    key={note.id}
-   className={cn('flex items-center  relative ', isActive ? 'bg-var-editor-active' : '')}>
+   className={cn('flex items-center w-full relative hover:bg-var-editor-active ', isActive ? 'bg-var-editor-active' : '')}>
    <Link
-    className={cn('border-l border-var-cyan-trans ml-3', isRootChild && 'border-0 ml-0')}
+    className={cn('border-l w-full border-var-cyan-trans ml-3', isRootChild && 'border-0 ml-0')}
     prefetch={true}
     href={`/editor/${note.id}`}>
     <p className={cn('flex items-center  gap-1 text-fg-primary text-sm ', isActive && 'text-var-yellow')}>
      <NoteIcon className='min-w-6 text-var-cyan-light' />
      <Tooltip label={note.title}>
-      <p className='flex max-w-[22vw] text-nowrap truncate'>{truncate(note.title, 30)}</p>
+      <p className='flex w-full text-nowrap truncate'>{truncate(note.title, 25)}</p>
      </Tooltip>
     </p>
    </Link>
