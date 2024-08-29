@@ -1,5 +1,6 @@
 import React from 'react'
 import Editor from '../editor'
+import EditorCtx from '../editor-ctx'
 import { redirect } from 'next/navigation'
 import { validateRequest } from '@/actions/auth-actions'
 
@@ -10,9 +11,9 @@ async function EditNote({ params }: { params: { nid: string } }) {
  }
  const { nid } = params
  return (
-  <div>
+  <EditorCtx>
    <Editor nid={nid} />
-  </div>
+  </EditorCtx>
  )
 }
 

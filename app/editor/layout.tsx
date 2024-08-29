@@ -9,11 +9,9 @@ async function EditorLayout({ children, params }: { children: React.ReactNode; p
   return redirect('/login')
  }
  return (
-  <div>
-   <div className='w-full h-full flex gap-2 p-2 pt-0'>
-    <EditorNav params={params} />
-    {children}
-   </div>
+  <div className='w-full h-full flex gap-2 p-2 pt-0'>
+   <EditorNav params={params} />
+   {children}
   </div>
  )
 }

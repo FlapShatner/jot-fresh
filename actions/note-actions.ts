@@ -18,7 +18,7 @@ export async function createNote(newNote: CreateNote): Promise<ActionResult> {
    error: 'Unauthorized',
   }
  }
- const { content } = newNote
+ const { content, syntax } = newNote
  let title = newNote.title
  if (!content) {
   return {
@@ -44,6 +44,7 @@ export async function createNote(newNote: CreateNote): Promise<ActionResult> {
   title,
   folderId: rootFolderId,
   content,
+  syntax,
   userId: user.id,
   id: noteId,
  })
@@ -136,6 +137,7 @@ export async function updateNote(newNote: UpdateNote): Promise<ActionResult> {
  const result = await noteData.updateNote({
   title,
   content,
+  syntax: newNote.syntax,
   folderId: newNote.folderId,
   userId: user.id,
   id: noteId,
