@@ -9,6 +9,7 @@ import { getRootFolder } from '@/actions/folder-actions'
 async function NavTree({ folders, notes, folderId, params }: { folders: FolderPlus[]; notes: Note[]; folderId: string; params: { nid: string } }) {
  const rootFolder: FolderWithNotesAndFolders = await getRootFolder()
  const isRootChild = rootFolder.id === folderId
+
  return (
   <div
    style={{ scrollbarWidth: 'thin', scrollbarColor: '#373e49 #282C34' }}
