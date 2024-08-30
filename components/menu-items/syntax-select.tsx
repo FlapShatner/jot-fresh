@@ -43,6 +43,7 @@ function SyntaxSelect() {
      style={{ ...styles, ...floatingStyles }}>
      {syntax.map((item) => (
       <SyntaxItem
+       key={item.id}
        nid={nid as string}
        item={item}
        setIsOpen={setIsOpen}
