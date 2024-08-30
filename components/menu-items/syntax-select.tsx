@@ -16,9 +16,9 @@ function SyntaxSelect() {
 
  const { refs, floatingStyles, context } = useFloating<HTMLButtonElement>({
   open: isOpen,
-  placement: 'right-start',
+  placement: 'left-start',
   onOpenChange: setIsOpen,
-  middleware: [offset(4), flip(), shift()],
+  middleware: [offset(24), flip(), shift()],
   whileElementsMounted: autoUpdate,
  })
 
@@ -36,7 +36,7 @@ function SyntaxSelect() {
    </div>
    {isMounted && (
     <div
-     className={cn('flex flex-col px-1  py-1  items-center  rounded-primary bg-bg-secondary border border-fg-secondary text-fg-secondary z-50')}
+     className={cn('flex flex-col px-1  py-1  items-start rounded-primary bg-bg-secondary border border-fg-secondary text-fg-secondary z-50')}
      {...getFloatingProps()}
      ref={refs.setFloating}
      style={{ ...styles, ...floatingStyles }}>
@@ -44,11 +44,9 @@ function SyntaxSelect() {
       return (
        <div
         onClick={() => setIsOpen(false)}
-        className='flex items-center gap-1 px-2 cursor-pointer hover:bg-var-editor-active rounded-primary'
+        className='flex items-start justify-start gap-1 w-full px-2 cursor-pointer hover:bg-var-editor-active rounded-primary'
         key={item.name}>
-        <div className='w-[30px] '>
-         <div className={cn('m-auto text-fg-secondary text-base cursor-pointer hover:text-fg-primary')}>{item.title}</div>
-        </div>
+        <div className={cn('mr-auto text-fg-secondary text-base text-start cursor-pointer hover:text-fg-primary')}>{item.title}</div>
        </div>
       )
      })}
