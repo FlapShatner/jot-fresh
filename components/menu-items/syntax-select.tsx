@@ -1,13 +1,11 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { cn } from '@/lib/cn'
 import { useFloating, offset, flip, shift, autoUpdate, useClick, useDismiss, useInteractions, useTransitionStyles } from '@floating-ui/react'
 import { useParams, usePathname } from 'next/navigation'
-import { Settings as SettingsIcon, FolderMove } from '@/app/icons'
-import FolderList from './folder-list'
-import { FolderWithNotesAndFolders } from '@/drizzle/schema'
-import RenameFolderList from './rename-folder-list'
 import { syntax } from '@/data/syntax'
+import { CiCode } from '@/app/icons/code'
+import SyntaxItem from './syntax-item'
 
 function SyntaxSelect() {
  const [isOpen, setIsOpen] = useState(false)
@@ -18,7 +16,7 @@ function SyntaxSelect() {
   open: isOpen,
   placement: 'left-start',
   onOpenChange: setIsOpen,
-  middleware: [offset(24), flip(), shift()],
+  middleware: [offset(2), flip(), shift()],
   whileElementsMounted: autoUpdate,
  })
 
@@ -26,13 +24,16 @@ function SyntaxSelect() {
  const dismiss = useDismiss(context)
  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss])
  const { isMounted, styles } = useTransitionStyles(context)
- const isNew = pathname.includes('/editor/new')
  return (
   <>
    <div
+    className={cn('py-0.5 pr-2 text-sm flex items-center bg-bg-secondary rounded-primary cursor-pointer hover:bg-var-editor-active w-full')}
     ref={refs.setReference}
     {...getReferenceProps()}>
-    <div className='w-[30px] '>Language</div>
+    <div className='w-[30px] '>
+     <CiCode className='m-auto text-fg-secondary text-base cursor-pointer hover:text-fg-primary' />
+    </div>
+    Language
    </div>
    {isMounted && (
     <div
@@ -40,16 +41,13 @@ function SyntaxSelect() {
      {...getFloatingProps()}
      ref={refs.setFloating}
      style={{ ...styles, ...floatingStyles }}>
-     {syntax.map((item) => {
-      return (
-       <div
-        onClick={() => setIsOpen(false)}
-        className='flex items-start justify-start gap-1 w-full px-2 cursor-pointer hover:bg-var-editor-active rounded-primary'
-        key={item.name}>
-        <div className={cn('mr-auto text-fg-secondary text-base text-start cursor-pointer hover:text-fg-primary')}>{item.title}</div>
-       </div>
-      )
-     })}
+     {syntax.map((item) => (
+      <SyntaxItem
+       nid={nid as string}
+       item={item}
+       setIsOpen={setIsOpen}
+      />
+     ))}
     </div>
    )}
   </>

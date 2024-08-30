@@ -25,6 +25,7 @@ function FolderList({ nid }: { nid: string | string[] | null }) {
    const result: Note | { error: string } = await updateNote({
     userId: note.userId,
     folderId: folder.id,
+    syntax: note.syntax ?? '',
     id: noteId,
     title: note.title,
     content: note.content,

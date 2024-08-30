@@ -89,8 +89,8 @@ export type NewNote = InferInsertModel<typeof notesTable>
 export type User = InferSelectModel<typeof usersTable>
 export type NewUser = InferInsertModel<typeof usersTable>
 
-export type UpdateNote = { id: string; folderId: string; userId: string; title: string; content: string; updatedAt: Date }
-export type CreateNote = { title: string; content: string }
+export type UpdateNote = { id: string; folderId: string; userId: string; title: string; content: string; updatedAt: Date; syntax: string }
+export type CreateNote = { title: string; content: string; syntax: string }
 
 export type Folder = InferSelectModel<typeof foldersTable>
 export type FolderWithNotesAndFolders = Folder & { notes?: Note[]; folders?: FolderWithNotesAndFolders[] }

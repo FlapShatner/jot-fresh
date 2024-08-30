@@ -87,6 +87,18 @@ body {
   scrollbar-color: #373e49 #282C34;
 }
 
+.search {
+  width: 9rem;
+  transition: all 400ms var(--timing-func);
+
+  @starting-style {
+    width: 1.5rem;
+  }
+}
+
+.search-closed {
+  width: 1.5rem;
+}
 
 .glow,
 .glow-red {

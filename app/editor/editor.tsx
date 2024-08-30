@@ -5,6 +5,7 @@ import { useWindowSize, useDebounceValue } from 'usehooks-ts'
 import AceEditor from 'react-ace-builds'
 import { createNote, getNote, deleteNote, updateNote } from '@/actions/note-actions'
 import type { Note } from '@/drizzle/schema'
+import { useNoteContext } from '../context/note-context'
 
 import 'ace-builds/src-noconflict/mode-typescript'
 import 'ace-builds/src-noconflict/mode-javascript'
@@ -24,6 +25,7 @@ import 'ace-builds/src-noconflict/mode-tsx'
 import 'ace-builds/src-noconflict/mode-jsx'
 import 'ace-builds/src-noconflict/mode-toml'
 import 'ace-builds/src-noconflict/mode-yaml'
+import 'ace-builds/src-noconflict/mode-python'
 
 import 'ace-builds/src-noconflict/theme-one_dark'
 import 'ace-builds/src-noconflict/ext-language_tools'
@@ -38,6 +40,7 @@ function Editor({ nid }: { nid: string | null }) {
  const [editorHeight, setEditorHeight] = useState('87vh')
  const { width, height } = useWindowSize()
  const [debouncedHeight] = useDebounceValue(height, 100)
+ const noteContext = useNoteContext()
  const router = useRouter()
 
  const handleSave = async () => {
@@ -45,6 +48,7 @@ function Editor({ nid }: { nid: string | null }) {
   if (!!nid && !!authorId) {
    const result: Note | { error: string } = await updateNote({
     userId: authorId,
+    syntax: syntax ?? '',
     folderId: folderId ?? '',
     id: nid,
     title,
@@ -57,6 +61,7 @@ function Editor({ nid }: { nid: string | null }) {
   const result: Note[] | { error: string } = await createNote({
    title,
    content,
+   syntax: syntax ?? 'markdown',
   })
   if ('error' in result) {
    alert(result.error)
@@ -99,6 +104,12 @@ function Editor({ nid }: { nid: string | null }) {
  }
 
  useEffect(() => {
+  if (noteContext?.editorSyntax) {
+   setSyntax(noteContext.editorSyntax)
+  }
+ }, [noteContext?.editorSyntax])
+
+ useEffect(() => {
   const viewHeight = `${height - 108}px`
   setEditorHeight(viewHeight)
  }, [debouncedHeight])
@@ -127,7 +138,7 @@ function Editor({ nid }: { nid: string | null }) {
    }
   }
   getNoteData()
- }, [nid])
+ }, [nid, noteContext?.localNote])
 
  return (
   <div className='flex flex-col pt-0 '>
@@ -143,7 +154,7 @@ function Editor({ nid }: { nid: string | null }) {
      style={{ width: '70vw', height: editorHeight }}
      className='bg-var-editor-bg rounded-b-primary'>
      <AceEditor
-      mode={nid && syntax ? syntax : 'markdown'}
+      mode={syntax ? syntax : 'markdown'}
       theme='one_dark'
       name='main'
       onChange={(value) => setContent(value)}

@@ -1,6 +1,5 @@
 ## currently
 
-- syntax select menu item
 - persist order in tree
 
 ## features to add
@@ -41,6 +40,7 @@
 
 ## done
 
+- syntax select menu item
 - show notes in nested folders
 - delete folders
 - fold and unfold all folders from header
