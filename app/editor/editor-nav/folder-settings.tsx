@@ -1,6 +1,6 @@
 'use client'
 import SettingsMenu from '@/components/floating/settings-menu'
-import { Settings as SettingsIcon } from '@/app/icons'
+import { Options } from '@/app/icons/options'
 import FolderSelect from '@/components/menu-items/folder-select'
 import RenameFolder from '@/components/menu-items/rename-folder'
 import { cn } from '@/lib/cn'
@@ -15,7 +15,7 @@ function FolderSettings({ folder }: { folder: FolderWithNotesAndFolders }) {
    noHeader={true}
    target={
     <div className={cn('w-6 h-5 rounded-primary flex items-center justify-center hover:bg-var-cyan-trans')}>
-     <SettingsIcon className={cn('text-xs text-fg-primary  ')} />
+     <Options className={cn('text-base text-fg-primary  ')} />
     </div>
    }>
    <RenameFolder folder={folder} />

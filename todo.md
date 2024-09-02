@@ -34,7 +34,6 @@
 - #### settings
   - profile settings
   - create settings table per user
-  - settings db table for each user with prefs
   - choose color theme for editor
   - choose color theme for app?
   - save settings

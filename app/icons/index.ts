@@ -15,7 +15,7 @@ import { NewNote } from './new-note'
 import { Close } from './close'
 import { Check } from './check'
 import { CiFolderOpen as FolderOpen } from './folder-open'
-import { CiSettings as Settings } from './settings'
+import { Options } from './options'
 import { CiFolderUpload as FolderMove } from './folder-move'
 import { CiFileBlank as Note } from './note'
 import { CiFolderEdit as FolderEdit } from './folder-edit'
@@ -38,7 +38,6 @@ export {
  Close,
  Check,
  FolderOpen,
- Settings,
  FolderMove,
  FolderEdit,
  Note,

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useFolderContext } from '@/app/context/folder-context'
 import { cn } from '@/lib/cn'
 import FolderSettings from './folder-settings'
-import { Folder as FolderIcon, FolderOpen, Settings as SettingsIcon } from '@/app/icons'
+import { Folder as FolderIcon, FolderOpen } from '@/app/icons'
 
 import { FolderWithNotesAndFolders, Note } from '@/drizzle/schema'
 import { useParams } from 'next/navigation'

@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { useFloating, offset, flip, shift, autoUpdate, useClick, useDismiss, useInteractions, useTransitionStyles } from '@floating-ui/react'
-import { Settings as SettingsIcon } from '@/app/icons'
+import { Options } from '@/app/icons/options'
 import { cn } from '@/lib/cn'
 import FolderSelect from '../menu-items/folder-select'
 import { Folder } from '@/drizzle/schema'
@@ -59,7 +59,7 @@ function SettingsMenu({
      {!noHeader && (
       <div className='w-full py-1 pr-2 text-sm flex items-center border-b border-fg-secondary  rounded-t-primary'>
        <div className='min-w-[30px]'>
-        <SettingsIcon className='m-auto' />
+        <Options className='m-auto' />
        </div>
        {title}
       </div>

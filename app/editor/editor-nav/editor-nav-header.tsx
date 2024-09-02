@@ -26,7 +26,7 @@ function EditorNavHeader() {
      className='text-var-green text-[1.1em]  cursor-pointer'
     />
    </div>
-   <Search />
+   {/* <Search /> */}
    <div className='flex gap-2'>
     <Link href='/editor/new'>
      <NewNote className='text-accent text-[1.4em] hover:text-accent-light cursor-pointer' />

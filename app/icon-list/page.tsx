@@ -17,7 +17,6 @@ import {
  Close,
  Check,
  FolderOpen,
- Settings,
  Note,
  FolderMove,
  FolderEdit,
@@ -95,10 +94,7 @@ function Page() {
      <FolderOpen />
      FolderOpen
     </li>
-    <li>
-     <Settings />
-     Settings
-    </li>
+
     <li>
      <Note />
      Note
