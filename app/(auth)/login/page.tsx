@@ -13,12 +13,21 @@ function Login() {
   'use server'
   const username = formData.get('username')?.toString()
   const password = formData.get('password')?.toString()
+
   if (!username || !password) {
    alert('Please enter a username and password')
   }
   const loginData = { username: username, password: password } as LoginInput
   const result = await login(loginData)
   //   console.log(result)
+ }
+
+ async function guestUser(formData: FormData) {
+  'use server'
+
+  const loginData = { username: 'guest', password: 'password123' } as LoginInput
+  const result = await login(loginData)
+  console.log(result)
  }
 
  return (
@@ -52,6 +61,9 @@ function Login() {
      href='/signup'>
      Create an account
     </Link>
+    <form action={guestUser}>
+     <button className='underline text-accent mt-4 text-sm hover:text-accent-light cursor-pointer'>Or try as guest</button>
+    </form>
    </div>
   </div>
  )

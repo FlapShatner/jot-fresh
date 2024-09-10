@@ -14,7 +14,7 @@ function FolderSettings({ folder }: { folder: FolderWithNotesAndFolders }) {
    borderColor='var(--green)'
    noHeader={true}
    target={
-    <div className={cn('w-6 h-5 rounded-primary flex items-center justify-center hover:bg-var-cyan-trans')}>
+    <div className={cn('w-6 h-5 cursor-pointer rounded-primary flex items-center justify-center hover:bg-var-editor-active')}>
      <Options className={cn('text-base text-fg-primary  ')} />
     </div>
    }>

@@ -92,7 +92,7 @@ export async function getRootFolder(): Promise<ActionResult> {
    error: 'Unauthorized',
   }
  }
- const result = await folderData.getRootFolder()
+ const result = await folderData.getRootFolder(user.id)
  if (!result) {
   return {
    error: 'No root folder found',

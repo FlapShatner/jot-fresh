@@ -1,7 +1,7 @@
 ## currently
 
+- make guest account without persistence
 - persist order in tree
-- change notes and folders settings icon to options
 - user interaction feedback / loading indicators / errors
 
 ## features to add
@@ -51,6 +51,7 @@
 - unique email only for forgot password flow
 - folders
 - add a new note
+- change notes and folders settings icon to options
 - show note immediately when added
 - close and open folders in tree
 - header

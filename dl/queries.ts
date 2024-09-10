@@ -70,8 +70,11 @@ export const folderData = {
   return db.insert(foldersTable).values(folder).returning()
  },
 
- getRootFolder: async (): Promise<FolderWithNotesAndFolders | null> => {
-  const rootFolder = await db.query.foldersTable.findFirst({ where: eq(foldersTable.isRoot, true), with: { folders: true, notes: true } })
+ getRootFolder: async (userId: string): Promise<FolderWithNotesAndFolders | null> => {
+  const rootFolder = await db.query.foldersTable.findFirst({
+   where: eq(foldersTable.isRoot, true) && eq(foldersTable.userId, userId),
+   with: { folders: true, notes: true },
+  })
   return rootFolder ?? null
  },
 
