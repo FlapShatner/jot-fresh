@@ -1,34 +1,16 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import SearchIcon from '@/app/icons/search'
-import { createIndex, searchIndex, SearchResult } from '@/lib/lunr/indexData'
-import { getNotes } from '@/actions/note-actions'
+import { useSearch } from '@/hooks/useSearch'
 
 function Search() {
  const [query, setQuery] = useState('')
- const [results, setResults] = useState<SearchResult[]>([])
- const [index, setIndex] = useState<lunr.Index | null>(null)
-
- useEffect(() => {
-  async function fetchData() {
-   const notes = await getNotes()
-   const idx = createIndex(notes)
-   setIndex(idx)
-  }
-  fetchData()
- }, [])
+ const { searchIndex, results } = useSearch()
 
  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
   const val = e.target.value
   setQuery(val)
-  if (val.trim() === '') {
-   setResults([])
-   return
-  }
-  if (index) {
-   const searchResults = searchIndex(index, val)
-   setResults(searchResults)
-  }
+  searchIndex(val)
  }
 
  return (
@@ -44,9 +26,8 @@ function Search() {
    </div>
    <div>
     {results.map((result) => (
-     <div key={result.ref}>
-      <div>{result.ref}</div>
-      <div>{JSON.stringify(result.matchData)}</div>
+     <div key={result.id}>
+      <div>{result.title}</div>
      </div>
     ))}
    </div>
