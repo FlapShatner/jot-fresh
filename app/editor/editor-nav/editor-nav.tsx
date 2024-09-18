@@ -9,7 +9,6 @@ async function EditorNav({ params }: { params: { nid: string } }) {
  const rootFolder: FolderWithNotesAndFolders = await getRootFolder()
  const folders = rootFolder.folders ?? []
  const notes = rootFolder.notes ?? []
- //  console.log(rootFolder)
  return (
   <ContextTree>
    <div className='flex flex-col items-start w-full max-w-[var(--nav-width)]'>

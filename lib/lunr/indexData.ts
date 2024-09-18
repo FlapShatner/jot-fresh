@@ -1,32 +1,38 @@
-import lunr from 'lunr';
-import { Note, Folder } from '@/drizzle/schema';
+import lunr from 'lunr'
+import { Note, Folder } from '@/drizzle/schema'
 
-export function createIndex(notes: Note[], folders: Folder[]) {
-  const index = lunr(function () {
-    this.ref('id');
-    this.field('title');
-    this.field('content');
-    this.field('name');
+export function createIndex(notes: Note[]) {
+ const index = lunr(function () {
+  this.ref('id')
+  this.field('title')
+  this.field('content')
+  this.field('name')
 
-    notes.forEach(note => {
-      this.add({
-        id: note.id,
-        title: note.title,
-        content: note.content,
-      });
-    });
+  notes.forEach((note) => {
+   this.add({
+    id: note.title,
+    title: note.title,
+    content: note.content,
+   })
+  })
+ })
 
-    // folders.forEach(folder => {
-    //   this.add({
-    //     id: folder.id,
-    //     name: folder.name,
-    //   });
-    // });
-  });
-
-  return index;
+ return index
 }
 
 export function searchIndex(index: lunr.Index, query: string) {
-    return index.search(query).map(result => result.ref);
-  }
+ const wildQuery = `+${query}*~1`
+ const results = index
+  .search(wildQuery)
+  .map((result) => ({
+   ref: result.ref,
+   matchData: result.matchData.metadata,
+  }))
+  .slice(0, 8)
+ return results
+}
+
+export type SearchResult = {
+ ref: string
+ matchData: object
+}
