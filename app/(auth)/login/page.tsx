@@ -1,14 +1,20 @@
 import Link from 'next/link'
 import React from 'react'
-import { login } from '@/actions/auth-actions'
+import { login, validateRequest } from '@/actions/auth-actions'
 import Input from '@/components/input'
 import PwInput from '@/components/pw-input'
 
 import { Home, Avatar, Lock } from '../../icons'
 import Button from '@/components/button'
 import { LoginInput } from '@/lib/types'
+import { redirect } from 'next/navigation'
 
-function Login() {
+async function Login() {
+ const { user, session } = await validateRequest()
+ if (user) {
+  return redirect('/editor/new')
+ }
+
  async function loginUser(formData: FormData) {
   'use server'
   const username = formData.get('username')?.toString()
