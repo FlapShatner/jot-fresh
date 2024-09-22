@@ -7,7 +7,7 @@ function NavTreeShow({ children }: { children: React.ReactNode }) {
  if (!folderContext) return null
  const { isShowing } = folderContext
 
- return <div>{isShowing ? children : null}</div>
+ return <div className='w-full'>{isShowing ? children : null}</div>
 }
 
 export default NavTreeShow
