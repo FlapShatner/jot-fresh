@@ -7,7 +7,7 @@ import { useFolderContext } from '@/app/context/folder-context'
 import Link from 'next/link'
 import React from 'react'
 import NameFolder from '@/components/floating/name-folder'
-import Search from './search'
+import Search from './search/search'
 function EditorNavHeader() {
  const folderContext = useFolderContext()
  if (!folderContext) {

@@ -5,10 +5,11 @@ import { useParams } from 'next/navigation'
 import { cn } from '@/lib/cn'
 import Link from 'next/link'
 import { Note as NoteIcon } from '@/app/icons'
+import { SimpleNote } from '@/lib/types'
 import { Note } from '@/drizzle/schema'
 import { truncate } from '@/lib/utils'
 
-function NavItem({ note, isRootChild }: { note: Note; isRootChild: boolean }) {
+function NavItem({ note, isRootChild }: { note: Note | SimpleNote; isRootChild: boolean }) {
  const { nid } = useParams()
  const isActive = nid === note.id
  return (

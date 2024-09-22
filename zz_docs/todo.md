@@ -6,6 +6,7 @@
 
 ## features to add
 
+- show editor fallback when loading
 - pin to top / pinned area
 - build more cohesive menu system
 - filter by date range

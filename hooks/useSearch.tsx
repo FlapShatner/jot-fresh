@@ -1,24 +1,22 @@
 import { useState, useMemo } from 'react'
 import MiniSearch, { SearchResult } from 'minisearch'
-import { getNotes } from '@/actions/note-actions'
 import { Note } from '@/drizzle/schema'
 
-export function useSearch() {
+export function useSearch(allNotes: Note[]) {
  const [results, setResults] = useState<SearchResult[]>([])
- const notes = useMemo(() => getNotes(), [])
+
  const miniSearch = new MiniSearch({
   fields: ['title', 'content'],
   storeFields: ['id', 'title'],
  })
 
- const searchIndex = async (query: string) => {
+ const searchIndex = (query: string) => {
   console.log('searchIndex', query)
   if (query.trim() === '') {
    setResults([])
    return
   }
-  //   const notes: Note[] = await getNotes()
-  miniSearch.addAll(await notes)
+  miniSearch.addAll(allNotes)
   const searchResults = miniSearch.search(query)
   console.log('searchResults', searchResults)
   setResults(searchResults)
