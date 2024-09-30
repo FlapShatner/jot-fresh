@@ -36,6 +36,8 @@
   --tooltip-bg: rgb(133, 227, 239, .2);
   --timing-func: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   --nav-width: calc(33vw - 3.5rem);
+  --nav-height: calc(100vh - 73px);
+  --nav-height-int: calc(100vh - 150px);
 }
 
 /* .dark {
@@ -78,6 +80,14 @@ body {
   background: var(--bg-primary);
   color: var(--fg-primary);
   scrollbar-width: thin;
+}
+
+.nav-height {
+  height: var(--nav-height);
+}
+
+.nav-height-int {
+  height: var(--nav-height-int);
 }
 
 .ace_scrollbar-v,
