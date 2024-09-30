@@ -5,6 +5,7 @@ import { useWindowSize, useDebounceValue } from 'usehooks-ts'
 import AceEditor from 'react-ace-builds'
 import { createNote, getNote, deleteNote, updateNote } from '@/actions/note-actions'
 import type { Note } from '@/drizzle/schema'
+import jotConfig from '@/jot.config'
 import { useNoteContext } from '../context/note-context'
 
 import 'ace-builds/src-noconflict/mode-typescript'
@@ -162,7 +163,7 @@ function Editor({ nid }: { nid: string | null }) {
       showPrintMargin={false}
       showGutter={true}
       height={editorHeight}
-      width={width < 738 ? '100vw' : '70vw'}
+      width={width < jotConfig.mobileWidth ? '100vw' : '70vw'}
       wrapEnabled={true}
       highlightActiveLine={true}
       minLines={10}

@@ -39,7 +39,7 @@ function RenameFolderList({ folder }: { folder?: FolderWithNotesAndFolders }) {
       onClick={() => handleClick(item)}
       className='flex items-center gap-1 px-2 cursor-pointer hover:bg-var-editor-active rounded-primary'
       key={item.id}>
-      <FolderIcon className='text-fg-primary ' />
+      <FolderIcon className='text-fg-primary min-w-6' />
       {item.name}
      </div>
     )

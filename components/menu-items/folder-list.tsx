@@ -44,10 +44,10 @@ function FolderList({ nid }: { nid: string | string[] | null }) {
       onClick={() => handleClick(item)}
       className='flex items-start  gap-1 px-2 cursor-pointer hover:bg-var-editor-active rounded-primary'
       key={item.id}>
-      <div className='pt-0.5'>
-       <FolderIcon className='text-fg-primary min-w-4' />
+      <div className='pt-0.5 min-w-4'>
+       <FolderIcon className='text-fg-primary' />
       </div>
-      {item.name}
+      <div className='w-full text-start'>{item.name}</div>
      </div>
     )
    })}

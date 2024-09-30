@@ -43,7 +43,7 @@ function FolderSelect({ folder }: { folder?: FolderWithNotesAndFolders }) {
 
    {isMounted && (
     <div
-     className={cn('flex flex-col px-1  py-1  items-center  rounded-primary bg-bg-secondary border border-fg-secondary text-fg-secondary z-50')}
+     className={cn('flex flex-col px-1 min-w-[130px] min-h-[100px] py-1 items-center  rounded-primary bg-bg-secondary border border-fg-secondary text-fg-secondary z-50 transition-all')}
      {...getFloatingProps()}
      ref={refs.setFloating}
      style={{ ...styles, ...floatingStyles }}>

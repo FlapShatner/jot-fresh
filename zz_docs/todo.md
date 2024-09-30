@@ -1,5 +1,8 @@
 ## currently
 
+- nav scroll when content overflows y axis
+- make editor width responsive
+- hide nav sidebar when under a certain width
 - make guest account without persistence
 - persist order in tree
 - user interaction feedback / loading indicators / errors
