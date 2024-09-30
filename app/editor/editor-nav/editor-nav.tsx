@@ -14,7 +14,7 @@ async function EditorNav({ params }: { params: { nid: string } }) {
  const allNotes = await getNotes()
  return (
   <ContextTree>
-    <div className='flex flex-col items-start w-full max-w-[var(--nav-width)] '>
+    <div className='flex flex-col items-start w-full  '>
      <EditorNavHeader />
     <Search allNotes={allNotes} />
     <div className='relative nav-height-int w-full bg-var-editor-bg pt-2 rounded-bl-primary pr-1 '>
