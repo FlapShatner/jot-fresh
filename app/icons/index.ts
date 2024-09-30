@@ -19,6 +19,8 @@ import { Options } from './options'
 import { CiFolderUpload as FolderMove } from './folder-move'
 import { CiFileBlank as Note } from './note'
 import { CiFolderEdit as FolderEdit } from './folder-edit'
+import { SidebarCollapse } from './sidebar-collapse'
+import { SidebarExpand } from './sidebar-expand'
 
 export {
  Avatar,
@@ -41,4 +43,6 @@ export {
  FolderMove,
  FolderEdit,
  Note,
+ SidebarCollapse,
+ SidebarExpand,
 }

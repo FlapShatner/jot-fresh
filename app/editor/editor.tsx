@@ -31,6 +31,7 @@ import 'ace-builds/src-noconflict/mode-python'
 import 'ace-builds/src-noconflict/theme-one_dark'
 import 'ace-builds/src-noconflict/ext-language_tools'
 import EditorHeader from './editor-header'
+import { cn } from '@/lib/cn'
 
 function Editor({ nid }: { nid: string | null }) {
  const [authorId, setAuthorId] = useState<string | null>(null)
@@ -141,8 +142,10 @@ function Editor({ nid }: { nid: string | null }) {
   getNoteData()
  }, [nid, noteContext?.localNote])
 
+ const isMobile = width <= jotConfig.breakpoints.sm
+
  return (
-  <div className='flex flex-col pt-0 '>
+  <div className={cn('flex flex-col pt-0 transition-width duration-300', isMobile && 'w-full')}>
    <EditorHeader
     isNid={nid !== null}
     title={title}
@@ -152,7 +155,7 @@ function Editor({ nid }: { nid: string | null }) {
    />
    <div onKeyDown={(e) => handleKeyDown(e)}>
     <div
-     style={{ width: '70vw', height: editorHeight }}
+    style={{ width: isMobile ? '100%' : '70vw', height: editorHeight }}
      className='bg-var-editor-bg rounded-b-primary'>
      <AceEditor
       mode={syntax ? syntax : 'markdown'}
@@ -163,7 +166,7 @@ function Editor({ nid }: { nid: string | null }) {
       showPrintMargin={false}
       showGutter={true}
       height={editorHeight}
-      width={width < jotConfig.mobileWidth ? '100vw' : '70vw'}
+      width={isMobile ? '100%' : '70vw'}
       wrapEnabled={true}
       highlightActiveLine={true}
       minLines={10}

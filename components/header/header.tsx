@@ -10,17 +10,15 @@ async function Header({ user }: { user: User | null }) {
  const colorsArray = await getColors(user?.username ?? '')
  return (
   <div className='w-full h-16'>
-   <div className='flex items-center justify-end p-4 absolute right-0 top-0'>
+   <div className='flex items-center justify-between p-4 absolute right-0 top-0'>
+    
     {user ? (
      <UserAvatar
       colorsArray={colorsArray}
       user={user}
      />
     ) : (
-     <div />
-     //  <Link href={'/login'}>
-     //    <Login className='text-accent text-3xl hover:text-accent-light cursor-pointer' />
-     //  </Link>
+     <div />  
     )}
    </div>
   </div>
