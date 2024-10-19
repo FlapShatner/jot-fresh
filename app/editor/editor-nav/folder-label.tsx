@@ -21,7 +21,6 @@ function FolderLabel({ folder, children, childIds }: FolderLabelProps) {
 
  const folderContext = useFolderContext()
  const areFoldersOpen = folderContext ? folderContext.areFoldersOpen : 'none'
- //  const setNone = folderContext ? folderContext.setNone : () => {};
  const { nid } = useParams()
 
  useEffect(() => {

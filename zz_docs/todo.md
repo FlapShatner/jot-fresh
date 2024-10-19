@@ -1,5 +1,7 @@
 ## currently
 
+- tests
+- feature flags
 - nav scroll when content overflows y axis
 - make editor width responsive
 - hide nav sidebar when under a certain width

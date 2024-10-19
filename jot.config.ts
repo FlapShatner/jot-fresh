@@ -3,8 +3,8 @@ const jotConfig = {
  defaultSyntax: 'typescript',
  defaultTheme: 'one_dark',
  breakpoints: {
-  sm: 738
- }
+  sm: 768,
+ },
 }
 
 export default jotConfig

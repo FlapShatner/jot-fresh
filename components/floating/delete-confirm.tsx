@@ -18,12 +18,12 @@ function DeleteConfirm({ handleClick, target }: { handleClick: () => void; targe
  const { isMounted, styles } = useTransitionStyles(context)
  return (
   <>
-   <button
+   <div
     ref={refs.setReference}
     {...getReferenceProps()}
     className='flex gap-2 items-center w-full'>
     {target}
-   </button>
+   </div>
    {isMounted && (
     <div
      {...getFloatingProps()}
