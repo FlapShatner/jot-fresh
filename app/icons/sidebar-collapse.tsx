@@ -1,6 +1,16 @@
+import { SVGProps } from 'react'
 
-export function SidebarCollapse(props: React.SVGProps<SVGSVGElement>) {
-    return (
-      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm5-2v16"></path><path d="m15 10l-2 2l2 2"></path></g></svg>
-    )
-  }
+export function SidebarCollapse(props: SVGProps<SVGSVGElement>) {
+ return (
+  <svg
+   xmlns='http://www.w3.org/2000/svg'
+   width='1em'
+   height='1em'
+   viewBox='0 0 24 24'
+   {...props}>
+   <path
+    fill='currentColor'
+    d='M10.15 16.15L6.7 12.7q-.3-.3-.3-.7t.3-.7l3.45-3.45q.25-.25.55-.125t.3.475v7.6q0 .35-.3.475t-.55-.125M13 20V4q0-.425.288-.712T14 3t.713.288T15 4v16q0 .425-.288.713T14 21t-.712-.288T13 20'></path>
+  </svg>
+ )
+}
