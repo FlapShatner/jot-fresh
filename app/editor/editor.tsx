@@ -27,6 +27,7 @@ import 'ace-builds/src-noconflict/mode-jsx'
 import 'ace-builds/src-noconflict/mode-toml'
 import 'ace-builds/src-noconflict/mode-yaml'
 import 'ace-builds/src-noconflict/mode-python'
+import 'ace-builds/src-noconflict/mode-golang'
 
 import 'ace-builds/src-noconflict/theme-one_dark'
 import 'ace-builds/src-noconflict/ext-language_tools'
@@ -155,7 +156,7 @@ function Editor({ nid }: { nid: string | null }) {
    />
    <div onKeyDown={(e) => handleKeyDown(e)}>
     <div
-    style={{ width: isMobile ? '100%' : '70vw', height: editorHeight }}
+     style={{ width: isMobile ? '100%' : '70vw', height: editorHeight }}
      className='bg-var-editor-bg rounded-b-primary'>
      <AceEditor
       mode={syntax ? syntax : 'markdown'}

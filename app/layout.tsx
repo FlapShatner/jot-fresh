@@ -18,7 +18,7 @@ export default async function RootLayout({
  const { user, session } = await validateRequest()
  return (
   <html lang='en'>
-   <body className={cn(inter.variable, caveat.variable, dmSans.variable, sono.variable, 'font-dmSans overflow-hidden')}>
+   <body className={cn(inter.variable, caveat.variable, dmSans.variable, sono.variable, dmSans.className, 'font-dmSans overflow-hidden')}>
     <Header user={user ? user : null} />
     {children}
    </body>

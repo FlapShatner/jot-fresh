@@ -78,6 +78,7 @@ body {
   background: var(--bg-primary);
   color: var(--fg-primary);
   scrollbar-width: thin;
+  font-family: var(--dm-sans);
 }
 
 .ace_scrollbar-v,

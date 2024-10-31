@@ -35,6 +35,11 @@ export const syntax = [
   name: 'json',
  },
  {
+  id: 'go',
+  title: 'Golang',
+  name: 'golang',
+ },
+ {
   id: 'java',
   title: 'Java',
   name: 'java',
