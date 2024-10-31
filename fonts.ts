@@ -4,6 +4,6 @@ export const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--i
 
 export const caveat = Caveat({ subsets: ['latin'], display: 'swap', variable: '--caveat' })
 
-export const dmSans = DM_Sans({ subsets: ['latin'], display: 'swap', variable: '--dm-sans' })
-
 export const sono = Sono({ subsets: ['latin'], display: 'swap', variable: '--sono' })
+
+export const dmSans = DM_Sans({ subsets: ['latin'], display: 'swap', variable: '--dm-sans' })
