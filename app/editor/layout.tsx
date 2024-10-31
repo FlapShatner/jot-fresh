@@ -1,9 +1,11 @@
 import React from 'react'
 import { validateRequest } from '@/actions/auth-actions'
 import { redirect } from 'next/navigation'
-import EditorNavSelect from './editor-nav/editor-nav-select'
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/app-sidebar'
+
 import EditorNav from './editor-nav'
-import EditorNavMobile from './editor-nav/editor-nav-mobile'
+import BreakpointHandler from './editor-nav/breakpoint-handler'
 
 async function EditorLayout({ children, params }: { children: React.ReactNode; params: { nid: string } }) {
  const { user, session } = await validateRequest()
@@ -12,10 +14,7 @@ async function EditorLayout({ children, params }: { children: React.ReactNode; p
  }
  return (
   <div className='w-full h-full flex gap-2 p-2 pt-0'>
-   <EditorNavSelect
-    nav={<EditorNav params={params} />}
-    mobileNav={<EditorNavMobile />}
-   />
+   <BreakpointHandler nav={<EditorNav params={params} />} />
    {children}
   </div>
  )
