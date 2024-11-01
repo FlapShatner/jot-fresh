@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, Suspense, useDeferredValue } from 'react'
+import React, { useState, useEffect, useLayoutEffect, Suspense, useDeferredValue } from 'react'
 import { redirect, useRouter } from 'next/navigation'
 import { useWindowSize, useDebounceValue } from 'usehooks-ts'
 import AceEditor from 'react-ace-builds'
@@ -41,6 +41,7 @@ function Editor({ nid }: { nid: string | null }) {
  const [folderId, setFolderId] = useState<string | null>(null)
  const [title, setTitle] = useState<string>('')
  const [editorHeight, setEditorHeight] = useState('87vh')
+ const [isMobile, setIsMobile] = useState(false)
  const { width, height } = useWindowSize()
  const [debouncedHeight] = useDebounceValue(height, 100)
  const noteContext = useNoteContext()
@@ -112,7 +113,7 @@ function Editor({ nid }: { nid: string | null }) {
   }
  }, [noteContext?.editorSyntax])
 
- useEffect(() => {
+ useLayoutEffect(() => {
   const viewHeight = `${height - 108}px`
   setEditorHeight(viewHeight)
  }, [debouncedHeight])
@@ -143,7 +144,15 @@ function Editor({ nid }: { nid: string | null }) {
   getNoteData()
  }, [nid, noteContext?.localNote])
 
- const isMobile = width <= jotConfig.breakpoints.sm
+ useLayoutEffect(() => {
+  if (width < 800) {
+   setIsMobile(true)
+  } else {
+   setIsMobile(false)
+  }
+ }, [width])
+
+ //  const isMobile = width <= jotConfig.breakpoints.sm
 
  return (
   <div className={cn('flex flex-col pt-0 transition-width duration-300', isMobile && 'w-full')}>
