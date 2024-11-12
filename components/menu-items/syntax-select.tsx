@@ -7,7 +7,7 @@ import { syntax } from '@/data/syntax'
 import { CiCode } from '@/app/icons/code'
 import SyntaxItem from './syntax-item'
 
-function SyntaxSelect() {
+function SyntaxSelect({ syntaxTitle }: { syntaxTitle: string }) {
  const [isOpen, setIsOpen] = useState(false)
  const { nid } = useParams()
  const pathname = usePathname()
@@ -43,6 +43,7 @@ function SyntaxSelect() {
      style={{ ...styles, ...floatingStyles }}>
      {syntax.map((item) => (
       <SyntaxItem
+       syntaxTitle={syntaxTitle}
        key={item.id}
        nid={nid as string}
        item={item}

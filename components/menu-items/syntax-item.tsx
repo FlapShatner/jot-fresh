@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { cn } from '@/lib/cn'
 import { updateNote, getNote } from '@/actions/note-actions'
 import { useNoteContext } from '@/app/context/note-context'
 import { Note } from '@/drizzle/schema'
 
 type Props = {
+ syntaxTitle: string
  nid: string
  item: { name: string; title: string }
  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function SyntaxItem({ item, setIsOpen, nid }: Props) {
+function SyntaxItem({ syntaxTitle, item, setIsOpen, nid }: Props) {
  const noteContext = useNoteContext()
  const handleClick = async () => {
   if (!nid) {
@@ -37,12 +38,13 @@ function SyntaxItem({ item, setIsOpen, nid }: Props) {
   }
   setIsOpen(false)
  }
+ const isSelected = syntaxTitle === item.name
  return (
   <div
    onClick={handleClick}
    className='flex items-start w-full gap-1 px-2 cursor-pointer hover:bg-var-editor-active rounded-primary'
    key={item.name}>
-   <div className={cn('mr-auto  text-fg-secondary text-base cursor-pointer hover:text-fg-primary')}>{item.title}</div>
+   <div className={cn('mr-auto text-fg-secondary text-base cursor-pointer hover:text-fg-primary', isSelected && 'text-var-yellow')}>{item.title}</div>
   </div>
  )
 }

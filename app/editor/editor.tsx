@@ -157,6 +157,7 @@ function Editor({ nid }: { nid: string | null }) {
  return (
   <div className={cn('flex flex-col pt-0 transition-width duration-300', isMobile && 'w-full')}>
    <EditorHeader
+    syntax={syntax ?? ''}
     isNid={nid !== null}
     title={title}
     setTitle={setTitle}

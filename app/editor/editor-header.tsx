@@ -10,12 +10,14 @@ import FolderSelect from '@/components/menu-items/folder-select'
 import SyntaxSelect from '@/components/menu-items/syntax-select'
 
 function EditorHeader({
+ syntax,
  title,
  setTitle,
  handleSave,
  handleDelete,
  isNid,
 }: {
+ syntax: string
  title: string
  setTitle: React.Dispatch<React.SetStateAction<string>>
  handleSave: () => void
@@ -55,7 +57,7 @@ function EditorHeader({
       title='Note Settings'
       target={<Options className='text-fg-secondary text-xl cursor-pointer hover:text-fg-primary' />}>
       <FolderSelect />
-      <SyntaxSelect />
+      <SyntaxSelect syntaxTitle={syntax} />
      </SettingsMenu>
     </Tooltip>
    </div>
