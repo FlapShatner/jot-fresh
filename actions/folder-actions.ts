@@ -62,6 +62,7 @@ export async function createRootFolder(args: { userId: string }): Promise<Action
  return result
 }
 
+// TODO: validate that the user is the owner of the folder
 export async function getFolders(): Promise<ActionResult> {
  const { user, session } = await validateRequest()
  if (!user) {

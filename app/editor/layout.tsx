@@ -14,7 +14,11 @@ async function EditorLayout({ children, params }: { children: React.ReactNode; p
   <div className='w-full h-full flex gap-2 p-2 pt-0'>
    <EditorNavSelect
     nav={<EditorNav params={params} />}
-    mobileNav={<EditorNavMobile children={<EditorNav params={params} />} />}
+    mobileNav={
+     <EditorNavMobile>
+      <EditorNav params={params} />
+     </EditorNavMobile>
+    }
    />
    {children}
   </div>
