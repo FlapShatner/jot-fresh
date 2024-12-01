@@ -1,5 +1,5 @@
 const jotConfig = {
- version: '0.1.7',
+ version: '0.2',
  defaultSyntax: 'typescript',
  defaultTheme: 'one_dark',
  breakpoints: {

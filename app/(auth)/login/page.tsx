@@ -47,26 +47,31 @@ async function Login() {
     <form
      action={loginUser}
      autoComplete='off'
-     className='flex flex-col items-center gap-4 justify-center font-sono transition-all'>
+     className='flex flex-col items-center gap-2 justify-center font-sono transition-all'>
      <Input
       icon={<Avatar className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
       inputAttributes={{ type: 'text', name: 'username', placeholder: ' ', required: true }}
       label='Email or username'
       labelAttributes={{ htmlFor: 'username' }}
      />
-     <PwInput
-      icon={<Lock className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
-      inputAttributes={{ name: 'password', placeholder: '', required: true }}
-      label='Password'
-      labelAttributes={{ htmlFor: 'password' }}
-     />
+     <div className='w-full flex flex-col gap-2'>
+      <PwInput
+       icon={<Lock className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
+       inputAttributes={{ name: 'password', placeholder: '', required: true }}
+       label='Password'
+       labelAttributes={{ htmlFor: 'password' }}
+      />
+      <Link
+       className='text-xs m-auto text-center text-fg-secondary hover:text-fg-primary'
+       href='/reset'>
+       Forgot password?
+      </Link>
+     </div>
      <Button variant='primary'>Sign In</Button>
     </form>
-    <Link
-     className='underline text-accent mt-12 text-sm hover:text-accent-light'
-     href='/signup'>
-     Create an account
-    </Link>
+    <button className='w-max bg-bg-primary rounded-md py-0.5 px-[30px] mt-4 text-accent-light font-bold border border-accent hover:bg-var-editor-active hover:border-accent-light transition-all'>
+     <Link href='/signup'>Create an account</Link>
+    </button>
     <form action={guestUser}>
      <button className='underline text-accent mt-4 text-sm hover:text-accent-light cursor-pointer'>Or try as guest</button>
     </form>

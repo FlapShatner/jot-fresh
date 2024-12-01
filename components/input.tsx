@@ -1,7 +1,7 @@
 import React from 'react'
 
 type Props = {
- icon: React.ReactNode
+ icon?: React.ReactNode
  inputAttributes: React.InputHTMLAttributes<HTMLInputElement>
  labelAttributes: React.LabelHTMLAttributes<HTMLLabelElement>
  label: string
