@@ -42,6 +42,8 @@ function Editor({ nid }: { nid: string | null }) {
  const [title, setTitle] = useState<string>('')
  const [editorHeight, setEditorHeight] = useState('87vh')
  const [isMobile, setIsMobile] = useState(false)
+ const [isSaved, setIsSaved] = useState(true)
+ const [isSaving, setIsSaving] = useState(false)
  const { width, height } = useWindowSize()
  const [debouncedHeight] = useDebounceValue(height, 100)
  const noteContext = useNoteContext()
@@ -49,6 +51,7 @@ function Editor({ nid }: { nid: string | null }) {
 
  const handleSave = async () => {
   //   console.log(content)
+  setIsSaving(true)
   if (!!nid && !!authorId) {
    const result: Note | { error: string } = await updateNote({
     userId: authorId,
@@ -60,6 +63,12 @@ function Editor({ nid }: { nid: string | null }) {
     updatedAt: new Date(),
    })
    //    console.log(result)
+   if ('error' in result) {
+    alert(result.error)
+    return
+   }
+   setIsSaving(false)
+   setIsSaved(true)
    return
   }
   const result: Note[] | { error: string } = await createNote({
@@ -71,6 +80,8 @@ function Editor({ nid }: { nid: string | null }) {
    alert(result.error)
    return
   }
+  setIsSaving(false)
+  setIsSaved(true)
   router.push(`/editor/${result[0].id}`)
   console.log(result)
  }
@@ -114,7 +125,7 @@ function Editor({ nid }: { nid: string | null }) {
  }, [noteContext?.editorSyntax])
 
  useLayoutEffect(() => {
-  const viewHeight = `${height - 108}px`
+  const viewHeight = `${height - 124}px`
   setEditorHeight(viewHeight)
  }, [debouncedHeight])
 
@@ -152,6 +163,11 @@ function Editor({ nid }: { nid: string | null }) {
   }
  }, [width])
 
+ const handleChange = (value: string) => {
+  setContent(value)
+  setIsSaved(false)
+ }
+
  //  const isMobile = width <= jotConfig.breakpoints.sm
 
  return (
@@ -164,6 +180,10 @@ function Editor({ nid }: { nid: string | null }) {
     handleSave={handleSave}
     handleDelete={handleDelete}
    />
+   <div className='text-xs font-light px-2 bg-var-editor-bg text-var-grey-light flex justify-between'>
+    <p>{syntax}</p>
+    <p>{isSaving ? 'saving' : isSaved ? 'saved' : 'not saved'}</p>
+   </div>
    <div onKeyDown={(e) => handleKeyDown(e)}>
     <div
      style={{ width: isMobile ? '100%' : '70vw', height: editorHeight }}
@@ -172,7 +192,7 @@ function Editor({ nid }: { nid: string | null }) {
       mode={syntax ? syntax : 'markdown'}
       theme='one_dark'
       name='main'
-      onChange={(value) => setContent(value)}
+      onChange={(value) => handleChange(value)}
       fontSize={12}
       showPrintMargin={false}
       showGutter={true}
