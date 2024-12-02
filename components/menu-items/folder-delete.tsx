@@ -9,7 +9,6 @@ import DeleteConfirm from '../floating/delete-confirm'
 function FolderDelete({ folder }: { folder: FolderWithNotesAndFolders }) {
  const handleClick = () => {
   const result = deleteFolder(folder)
-  console.log(result)
  }
  return (
   <>

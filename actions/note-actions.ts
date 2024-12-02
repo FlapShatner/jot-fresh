@@ -48,7 +48,6 @@ export async function createNote(newNote: CreateNote): Promise<ActionResult> {
   userId: user.id,
   id: noteId,
  })
- //  console.log(result)
  revalidatePath('/')
  return result
 }
@@ -101,7 +100,6 @@ export async function deleteNote(data: { id: string; userId: string }): Promise<
  }
  const result = await noteData.deleteNoteById(data.id)
  revalidatePath('/')
- //  console.log(result)
  return result
  //  return redirect('/')
 }
@@ -143,7 +141,6 @@ export async function updateNote(newNote: UpdateNote): Promise<ActionResult> {
   id: noteId,
   updatedAt: updatedAt,
  })
- console.log('updateNote', result)
  revalidatePath(`/`)
  return result
 }

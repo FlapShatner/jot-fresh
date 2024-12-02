@@ -31,7 +31,6 @@ async function Signup() {
    password,
   } as NewUserInput
   const result = await signup(newUser)
-  //   console.log(result)
  }
 
  return (

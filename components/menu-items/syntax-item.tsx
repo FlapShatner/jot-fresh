@@ -32,7 +32,6 @@ function SyntaxItem({ syntaxTitle, item, setIsOpen, nid }: Props) {
     content: note.content,
     updatedAt: note.updatedAt,
    })
-   console.log('updated', result)
    if ('error' in result) return
    noteContext?.setLocalNote(result)
   }

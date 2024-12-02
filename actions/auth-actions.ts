@@ -3,6 +3,7 @@ import { cache } from 'react'
 import { userData } from '@/dl/queries'
 import { isEmail, isAscii, isByteLength } from 'validator'
 import { hash, verify } from '@node-rs/argon2'
+import { generateResetToken, generateResetTokenExpiry } from '@/lib/utils'
 import { cookies } from 'next/headers'
 import { lucia } from '@/lib/lucia/auth'
 import { redirect } from 'next/navigation'
@@ -65,7 +66,6 @@ export async function signup(newUser: NewUserInput) {
   id: userId,
  })
  await createRootFolder({ userId: userId })
- //  console.log(result)
  const session = await lucia.createSession(userId, {})
  const sessionCookie = lucia.createSessionCookie(session.id)
  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
@@ -153,4 +153,57 @@ export async function login({ username, password }: { username: string; password
  const sessionCookie = lucia.createSessionCookie(session.id)
  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
  return redirect('/')
+}
+
+export async function resetPassword(email: string) {
+ 'use server'
+ const user = await userData.getUserByEmail(email)
+ if (!user) {
+  return {
+   error: 'User not found.',
+  }
+ }
+ const resetToken = generateResetToken()
+ const resetTokenExpires = generateResetTokenExpiry()
+ const userWithResetToken = {
+  ...user,
+  resetToken,
+  resetTokenExpires,
+ }
+ await userData.updateUser(userWithResetToken)
+ return resetToken
+}
+
+export async function resetPasswordWithToken(token: string, password: string) {
+ 'use server'
+ const user = await userData.getUserByResetToken(token)
+ if (!user) {
+  return {
+   error: 'Invalid token.',
+  }
+ }
+ if (user.resetTokenExpires && new Date(user.resetTokenExpires) < new Date()) {
+  return {
+   error: 'Expired or nonexistent token.',
+  }
+ }
+ const password_hash = await hash(password, {
+  memoryCost: 19456,
+  timeCost: 2,
+  outputLen: 32,
+  parallelism: 1,
+ })
+ const userWithNewPassword = {
+  ...user,
+  password_hash,
+  resetToken: null,
+  resetTokenExpires: null,
+ }
+ const updatedUser = await userData.updateUser(userWithNewPassword)
+ if (updatedUser) {
+  return updatedUser
+ }
+ return {
+  error: 'Password reset failed.',
+ }
 }

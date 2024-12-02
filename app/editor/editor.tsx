@@ -50,7 +50,6 @@ function Editor({ nid }: { nid: string | null }) {
  const router = useRouter()
 
  const handleSave = async () => {
-  //   console.log(content)
   setIsSaving(true)
   if (!!nid && !!authorId) {
    const result: Note | { error: string } = await updateNote({
@@ -62,7 +61,6 @@ function Editor({ nid }: { nid: string | null }) {
     content,
     updatedAt: new Date(),
    })
-   //    console.log(result)
    if ('error' in result) {
     alert(result.error)
     return
@@ -83,7 +81,6 @@ function Editor({ nid }: { nid: string | null }) {
   setIsSaving(false)
   setIsSaved(true)
   router.push(`/editor/${result[0].id}`)
-  console.log(result)
  }
 
  const handleDelete = async () => {
@@ -98,11 +95,9 @@ function Editor({ nid }: { nid: string | null }) {
    alert(result.error)
    return
   }
-  //   console.log(result[0].id, 'deleted')
  }
 
  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-  //   console.log(e)
   if (e.key === 's' && e.ctrlKey) {
    e.preventDefault()
    handleSave()

@@ -28,8 +28,15 @@ export const userData = {
   const user = await db.query.usersTable.findFirst({ where: eq(usersTable.username, username) })
   return user ?? null
  },
+ getUserByResetToken: async (resetToken: string): Promise<User | null> => {
+  const user = await db.query.usersTable.findFirst({ where: eq(usersTable.resetToken, resetToken) })
+  return user ?? null
+ },
  insertUser: async (user: NewUser): Promise<User[]> => {
   return db.insert(usersTable).values(user).returning()
+ },
+ updateUser: async (user: User): Promise<User[]> => {
+  return db.update(usersTable).set(user).where(eq(usersTable.id, user.id)).returning()
  },
 }
 

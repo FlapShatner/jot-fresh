@@ -43,7 +43,6 @@ export async function createFolder(newFolder: { name: string; parentId?: string 
   newFolderData.parentId = newFolder.parentId
  }
  const result = await folderData.insertFolder(newFolderData)
- //  console.log(result)
  revalidatePath('/')
  return result
 }
@@ -57,7 +56,6 @@ export async function createRootFolder(args: { userId: string }): Promise<Action
   isRoot: true,
  }
  const result = await folderData.insertFolder(newFolderData)
- //  console.log(result)
  revalidatePath('/')
  return result
 }
@@ -147,7 +145,6 @@ export async function updateFolder(newFolder: UpdateFolder): Promise<ActionResul
   newFolderData.parentId = parentId
  }
  const result = await folderData.updateFolder(newFolderData)
- //  console.log(result)
  revalidatePath('/')
  return result
 }
@@ -173,6 +170,5 @@ export async function deleteFolder(folder: Folder): Promise<ActionResult> {
 
  const result = await folderData.deleteFolder(id)
  revalidatePath('/')
- //  console.log(result)
  return result
 }

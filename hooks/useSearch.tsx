@@ -11,14 +11,12 @@ export function useSearch(allNotes: Note[]) {
  })
 
  const searchIndex = (query: string) => {
-  console.log('searchIndex', query)
   if (query.trim() === '') {
    setResults([])
    return
   }
   miniSearch.addAll(allNotes)
   const searchResults = miniSearch.search(query)
-  console.log('searchResults', searchResults)
   setResults(searchResults)
  }
 

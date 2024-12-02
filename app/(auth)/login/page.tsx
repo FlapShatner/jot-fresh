@@ -25,7 +25,6 @@ async function Login() {
   }
   const loginData = { username: username, password: password } as LoginInput
   const result = await login(loginData)
-  //   console.log(result)
  }
 
  async function guestUser(formData: FormData) {
@@ -33,7 +32,6 @@ async function Login() {
 
   const loginData = { username: 'guest', password: 'password123' } as LoginInput
   const result = await login(loginData)
-  console.log(result)
  }
 
  return (
@@ -43,7 +41,8 @@ async function Login() {
     className='w-full flex justify-end'>
     <Home className='text-accent text-3xl hover:text-accent-light' />
    </Link> */}
-   <div className='flex flex-col items-center justify-center w-full h-[calc(100vh-80px)]'>
+   <div className='flex flex-col items-center justify-center w-full h-[calc(100vh-200px)]'>
+    <div className='py-12 text-xl'>Login</div>
     <form
      action={loginUser}
      autoComplete='off'
@@ -62,14 +61,14 @@ async function Login() {
        labelAttributes={{ htmlFor: 'password' }}
       />
       <Link
-       className='text-xs m-auto text-center text-fg-secondary hover:text-fg-primary'
+       className='text-xs m-auto text-center text-accent hover:text-fg-primary underline'
        href='/reset'>
        Forgot password?
       </Link>
      </div>
      <Button variant='primary'>Sign In</Button>
     </form>
-    <button className='w-max bg-bg-primary rounded-md py-0.5 px-[30px] mt-4 text-accent-light font-bold border border-accent hover:bg-var-editor-active hover:border-accent-light transition-all'>
+    <button className='w-max bg-accent rounded-md py-0.5 px-[30px] mt-4 text-bg-primary font-bold border border-accent hover:bg-accent-light hover:border-accent-light transition-all'>
      <Link href='/signup'>Create an account</Link>
     </button>
     <form action={guestUser}>

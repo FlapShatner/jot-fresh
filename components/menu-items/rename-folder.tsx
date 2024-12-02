@@ -23,8 +23,6 @@ function RenameFolder({ folder }: { folder: Folder }) {
   whileElementsMounted: autoUpdate,
  })
 
- //  console.log('settings rendered', Date.now())
-
  const click = useClick(context)
  const dismiss = useDismiss(context)
  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss])

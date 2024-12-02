@@ -31,7 +31,6 @@ function FolderList({ nid }: { nid: string | string[] | null }) {
     content: note.content,
     updatedAt: note.updatedAt,
    })
-   console.log('updated', result)
   }
  }
 

@@ -20,7 +20,6 @@ function NameFolder() {
  const { isMounted, styles } = useTransitionStyles(context)
  const handleClick = async () => {
   const result: any = await createFolder({ name: folderName, parentId: '' })
-  console.log(result)
   if ('error' in result) {
    alert(result.error)
    setIsOpen(false)

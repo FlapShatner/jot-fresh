@@ -21,6 +21,8 @@ export const usersTable = pgTable(
   email: text('email').unique().notNull(),
   password_hash: text('password_hash').notNull(),
   createdAt: timestamp('createdAt').defaultNow().notNull(),
+  resetToken: text('reset_token'),
+  resetTokenExpires: timestamp('reset_token_expires', { withTimezone: true, mode: 'date' }),
  },
  (usersTable) => {
   return {
