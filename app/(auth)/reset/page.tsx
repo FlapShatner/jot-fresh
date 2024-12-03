@@ -5,10 +5,13 @@ import { resetPassword } from '@/actions/auth-actions'
 import { sendEmail } from '@/lib/nodemailer'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { render } from '@react-email/components'
+import ResetPasswordEmail from '@/components/reset-email'
 
 export default function Reset() {
  const [success, setSuccess] = useState(false)
  const [email, setEmail] = useState('')
+
  async function handleSubmit(formData: FormData) {
   const email = formData.get('email')?.toString()
   if (!email) {
@@ -18,8 +21,9 @@ export default function Reset() {
   if (!tok || (typeof tok === 'object' && 'error' in tok)) {
    return alert('There was an error. Please try again')
   }
-  const emailText = `Reset your password by clicking on this link: https://jot-fresh.vercel.app/reset/${tok}`
-  const response = await sendEmail(email, 'Password reset', emailText)
+  const resetLink = `https://jot-fresh.vercel.app/reset${tok}`
+  const emailHtml = await render(<ResetPasswordEmail resetPasswordLink={resetLink} />)
+  const response = await sendEmail(email, 'Jot Password reset', emailHtml)
   if (response) {
    setEmail(response.accepted[0] as string)
    setSuccess(true)
