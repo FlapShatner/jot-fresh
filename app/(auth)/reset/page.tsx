@@ -38,7 +38,10 @@ export default function Reset() {
         <p>with a link to reset your password.</p>
        </p>
       </div>
-      <p className='text-sm'>You may need to check your spam or junk folder</p>
+      <div className='text-sm'>
+       <p>You may need to check your spam or junk folder</p>
+       <p> Your reset link will expire in 1 hour</p>
+      </div>
      </div>
     ) : (
      <form
