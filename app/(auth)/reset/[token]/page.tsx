@@ -6,10 +6,9 @@ import { redirect } from 'next/navigation'
 import { resetPasswordWithToken } from '@/actions/auth-actions'
 import { Lock } from '@/app/icons'
 
-async function ResetPassword({ params }: { params: Promise<{ token: string }> }) {
- const token = (await params).token
-
+function ResetPassword({ params }: { params: Promise<{ token: string }> }) {
  const handleSubmit = async (formData: FormData) => {
+  const token = (await params).token
   const password = formData.get('password')?.toString()
   const confirmPassword = formData.get('confirmPassword')?.toString()
   if (password && confirmPassword && password !== confirmPassword) {

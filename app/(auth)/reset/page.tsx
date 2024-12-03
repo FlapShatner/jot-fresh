@@ -18,7 +18,7 @@ export default function Reset() {
   if (!tok || (typeof tok === 'object' && 'error' in tok)) {
    return alert('There was an error. Please try again')
   }
-  const emailText = `Reset your password by clicking on this link: http://localhost:3000/reset/${tok}`
+  const emailText = `Reset your password by clicking on this link: https://jot-fresh.vercel.app/reset/${tok}`
   const response = await sendEmail(email, 'Password reset', emailText)
   if (response) {
    setEmail(response.accepted[0] as string)
