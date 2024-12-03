@@ -8,18 +8,24 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { render } from '@react-email/components'
 import ResetPasswordEmail from '@/components/reset-email'
+import { send } from 'process'
 
 export default function Reset() {
  const [success, setSuccess] = useState(false)
  const [isLoading, setIsLoading] = useState(false)
  const [email, setEmail] = useState('')
 
- async function handleSubmit(formData: FormData) {
+ const handleSubmit = (formData: FormData) => {
   setIsLoading(true)
   const email = formData.get('email')?.toString()
   if (!email) {
+   setIsLoading(false)
    return alert('Please enter an email')
   }
+  handleSend(email)
+ }
+
+ async function handleSend(email: string) {
   const tok = await resetPassword(email)
   if (!tok || (typeof tok === 'object' && 'error' in tok)) {
    setIsLoading(false)
@@ -31,8 +37,8 @@ export default function Reset() {
   if (response) {
    setEmail(response.accepted[0] as string)
    setSuccess(true)
+   setIsLoading(false)
   }
-  setIsLoading(false)
  }
 
  return (
@@ -65,13 +71,15 @@ export default function Reset() {
         className='w-full text-fg-primary bg-bg-primary border border-var-cyan-trans py-1 px-2 text-lg rounded-md hover:bg-bg-secondary '
        />
       </div>
-      <button
-       disabled={isLoading}
-       className={cn(
-        'w-full bg-accent rounded-md py-2 mt-4 text-bg-primary font-bold border border-accent hover:bg-accent-light hover:border-accent-light transition-all'
-       )}>
-       {isLoading ? 'Sending email...' : 'Send reset link'}
-      </button>
+      {isLoading ? (
+       <div className='w-full bg-accent rounded-md py-2 mt-4 text-bg-primary font-bold border border-accent transition-all opacity-80 text-center'>
+        Sending...
+       </div>
+      ) : (
+       <button className='w-full bg-accent rounded-md py-2 mt-4 text-bg-primary font-bold border border-accent hover:bg-accent-light hover:border-accent-light transition-all'>
+        Send reset link
+       </button>
+      )}
 
       <Link
        className='w-full bg-bg-primary rounded-md py-2 mt-4 text-accent-light font-bold border border-accent hover:bg-var-editor-active hover:border-accent-light transition-all text-center'
