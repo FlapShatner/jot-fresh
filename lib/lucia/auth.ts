@@ -1,9 +1,9 @@
 import { Lucia } from 'lucia'
 import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle'
-import { sessionTable, usersTable } from '@/drizzle/schema'
+import { sessionTable, usersTable, Session } from '@/drizzle/schema'
 import db from '@/drizzle/db'
 
-//
+// @ts-ignore
 const adapter = new DrizzlePostgreSQLAdapter(db, sessionTable, usersTable)
 
 export const lucia = new Lucia(adapter, {
@@ -15,7 +15,7 @@ export const lucia = new Lucia(adapter, {
    // set to `true` when using HTTPS
    secure: process.env.NODE_ENV === 'production',
   },
- },
+ }, 
  getUserAttributes: (attributes: DatabaseUserAttributes) => {
   return {
    ...attributes,

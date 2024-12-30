@@ -4,7 +4,7 @@ import { updateNote, getNote } from '@/actions/note-actions'
 import { Folder, FolderWithNotesAndFolders, Note } from '@/drizzle/schema'
 import { Folder as FolderIcon } from '@/app/icons'
 
-function FolderList({ nid }: { nid: string | string[] | null }) {
+function FolderList({ nid }: { nid: string | string[] | undefined }) {
  const [folders, setFolders] = useState<Folder[]>([])
 
  useEffect(() => {

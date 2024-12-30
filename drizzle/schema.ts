@@ -88,6 +88,9 @@ export const notesRelations = relations(notesTable, ({ one }) => ({
 export type Note = InferSelectModel<typeof notesTable>
 export type NewNote = InferInsertModel<typeof notesTable>
 
+export type Session = InferSelectModel<typeof sessionTable>
+export type NewSession = InferInsertModel<typeof sessionTable>
+
 export type User = InferSelectModel<typeof usersTable>
 export type NewUser = InferInsertModel<typeof usersTable>
 

@@ -13,7 +13,7 @@ export default function LoginForm({ loginUser, guestUser }: { loginUser: (formDa
     )
   return (
     <>
-    {error && <div className="text-red-500">{error}</div>}
+    {error ? <div className="text-red-500">{error}</div> : null}
       <form
         action={formAction}
         autoComplete="off"
