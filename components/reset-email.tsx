@@ -1,8 +1,8 @@
-'use client'
+
 import { Body, Button, Container, Head, Html, Preview, Section, Link, Text } from '@react-email/components'
 
-const ResetPasswordEmail = ({ resetPasswordLink }: { resetPasswordLink: string }) => {
- console.log(resetPasswordLink)
+const ResetPasswordEmail = ({ resetLink }: { resetLink: string }) => {
+ console.log(resetLink)
  const ifText = `If you don't want to change your password or didn&apos;t request this, just ignore and delete this message.`
  const ifText2 = `If link above doesn't work, copy and paste this address into your address bar:`
  return (
@@ -16,13 +16,13 @@ const ResetPasswordEmail = ({ resetPasswordLink }: { resetPasswordLink: string }
       <Text style={text}>Someone recently requested a password change for your Jot account. If this was you, you can set a new password here:</Text>
       <Button
        style={button}
-       href={resetPasswordLink}>
+       href={resetLink}>
        Reset your password
       </Button>
       <Text style={text}>{ifText}</Text>
       <Text style={text}>This link will expire in 1 hour</Text>
       <Text style={smallText}>{ifText2}</Text>
-      <Text style={blueText}> {resetPasswordLink}</Text>
+      <Text style={blueText}> {resetLink}</Text>
      </Section>
     </Container>
    </Body>

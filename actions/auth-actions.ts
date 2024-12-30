@@ -12,6 +12,9 @@ import type { Session, User } from 'lucia'
 import { NewUserInput } from '@/lib/types'
 import { ActionResult } from 'next/dist/server/app-render/types'
 import { createRootFolder } from './folder-actions'
+import { render } from '@react-email/components'
+import ResetPasswordEmail from '@/components/reset-email'
+import { sendEmail } from '@/lib/nodemailer'
 
 const usernameLength = { min: 3, max: 30 }
 
@@ -162,22 +165,27 @@ export async function login({ username, password }: { username: string; password
 }
 
 export async function resetPassword(email: string) {
- 'use server'
- const user = await userData.getUserByEmail(email)
- if (!user) {
-  return {
-   error: 'User not found.',
+  try {
+    const user = await userData.getUserByEmail(email)
+    if (!user) {
+      return { error: 'User not found.' }
+    }
+    const resetToken = generateResetToken()
+    const resetTokenExpires = generateResetTokenExpiry()
+    const userWithResetToken = {
+      ...user,
+      resetToken,
+      resetTokenExpires,
+    }
+    await userData.updateUser(userWithResetToken)
+    const resetLink = `https://jot-fresh.vercel.app/reset/${resetToken}`
+    const emailHtml = await render(ResetPasswordEmail({ resetLink}))
+    await sendEmail(email, 'Jot Password reset', emailHtml)
+    return { success: true }
+  } catch (error) {
+    console.error(error)
+    return { error: 'Failed to process reset request' }
   }
- }
- const resetToken = generateResetToken()
- const resetTokenExpires = generateResetTokenExpiry()
- const userWithResetToken = {
-  ...user,
-  resetToken,
-  resetTokenExpires,
- }
- await userData.updateUser(userWithResetToken)
- return resetToken
 }
 
 export async function resetPasswordWithToken(token: string, password: string) {

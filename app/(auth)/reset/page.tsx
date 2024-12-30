@@ -1,14 +1,8 @@
 'use client'
 import { useState } from 'react'
 
-import { cn } from '@/lib/cn'
 import { resetPassword } from '@/actions/auth-actions'
-import { sendEmail } from '@/lib/nodemailer'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-import { render } from '@react-email/components'
-import ResetPasswordEmail from '@/components/reset-email'
-import { send } from 'process'
+import Link from 'next/link'    
 
 export default function Reset() {
  const [success, setSuccess] = useState(false)
@@ -26,19 +20,14 @@ export default function Reset() {
  }
 
  async function handleSend(email: string) {
-  const tok = await resetPassword(email)
-  if (!tok || (typeof tok === 'object' && 'error' in tok)) {
+  const response = await resetPassword(email)
+  if (!response || (typeof response === 'object' && 'error' in response)) {
    setIsLoading(false)
    return alert('There was an error. Please try again')
   }
-  const resetLink = `https://jot-fresh.vercel.app/reset/${tok}`
-  const emailHtml = await render(<ResetPasswordEmail resetPasswordLink={resetLink} />)
-  const response = await sendEmail(email, 'Jot Password reset', emailHtml)
-  if (response) {
-   setEmail(response.accepted[0] as string)
-   setSuccess(true)
-   setIsLoading(false)
-  }
+  setEmail(email)
+  setSuccess(true)
+  setIsLoading(false)
  }
 
  return (
@@ -46,12 +35,13 @@ export default function Reset() {
    <div className='flex flex-col items-center justify-center w-full h-[calc(100vh-80px)]'>
     {success ? (
      <div className='flex flex-col text-center gap-4'>
-      <div>
-       <p className='text-lg'>
+      <div className='text-lg'>
+       <p>
         An email has been sent to
+        </p>
         <p>{email}</p>
         <p>with a link to reset your password.</p>
-       </p>
+       
       </div>
       <div className='text-sm'>
        <p>You may need to check your spam or junk folder</p>

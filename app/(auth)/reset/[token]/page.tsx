@@ -19,7 +19,7 @@ function ResetPassword({ params }: { params: Promise<{ token: string }> }) {
   }
   const result = await resetPasswordWithToken(token, password)
   if ('error' in result) {
-   return alert('There was an error. Please try again')
+   return alert(result.error)
   }
   redirect('/login')
  }
