@@ -40,6 +40,7 @@ function Editor({ nid }: { nid: string | null }) {
  const [syntax, setSyntax] = useState<string | null>('markdown')
  const [folderId, setFolderId] = useState<string | null>(null)
  const [title, setTitle] = useState<string>('')
+ const [editorLoaded, setEditorLoaded] = useState(false)
  const [editorHeight, setEditorHeight] = useState('87vh')
  const [isMobile, setIsMobile] = useState(false)
  const [isSaved, setIsSaved] = useState(true)
@@ -183,29 +184,45 @@ function Editor({ nid }: { nid: string | null }) {
     <div
      style={{ width: isMobile ? '100%' : '70vw', height: editorHeight }}
      className='bg-var-editor-bg rounded-b-primary'>
-     <AceEditor
-      mode={syntax ? syntax : 'markdown'}
-      theme='one_dark'
-      name='main'
-      onChange={(value) => handleChange(value)}
-      fontSize={12}
-      showPrintMargin={false}
-      showGutter={true}
-      height={editorHeight}
-      width={isMobile ? '100%' : '70vw'}
-      wrapEnabled={true}
-      highlightActiveLine={true}
-      minLines={10}
-      style={{ borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px' }}
-      value={content}
-      setOptions={{
-       enableBasicAutocompletion: true,
-       enableLiveAutocompletion: false,
-       enableSnippets: false,
-       showLineNumbers: true,
-       tabSize: 2,
-      }}
-     />
+     {!editorLoaded && (
+       <div 
+         className="animate-pulse bg-var-editor-bg" 
+         style={{ 
+           width: isMobile ? '100%' : '70vw', 
+           height: editorHeight,
+           borderBottomLeftRadius: '8px', 
+           borderBottomRightRadius: '8px'
+         }} 
+       />
+     )}
+     <div style={{ display: editorLoaded ? 'block' : 'none' }}>
+      <AceEditor
+       mode={syntax ? syntax : 'markdown'}
+       theme='one_dark'
+       name='main'
+       onChange={(value) => handleChange(value)}
+       fontSize={12}
+       onLoad={() => {
+        setEditorLoaded(true)
+       }}
+       showPrintMargin={false}
+       showGutter={true}
+       height={editorHeight}
+       width={isMobile ? '100%' : '70vw'}
+       wrapEnabled={true}
+       highlightActiveLine={true}
+       minLines={10}
+       style={{ borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px' }}
+       value={content}
+       setOptions={{
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: false,
+        enableSnippets: false,
+        showLineNumbers: true,
+        tabSize: 2,
+       }}
+      />
+     </div>
     </div>
    </div>
   </div>

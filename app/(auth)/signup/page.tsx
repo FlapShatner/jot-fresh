@@ -3,11 +3,8 @@ import { signup, validateRequest } from '@/actions/auth-actions'
 import { passwordsMatch } from '@/lib/utils'
 import { NewUserInput } from '@/lib/types'
 import Link from 'next/link'
-import { Home, Email, Lock, Avatar } from '../../icons'
-import Button from '@/components/button'
-import Input from '@/components/input'
-import PwInput from '@/components/pw-input'
 import { redirect } from 'next/navigation'
+import SignupForm from './signup-form'
 
 async function Signup() {
  const { user, session } = await validateRequest()
@@ -31,41 +28,16 @@ async function Signup() {
    password,
   } as NewUserInput
   const result = await signup(newUser)
+  if (result.error) {
+   return result.error
+  }
+  return    
  }
 
  return (
   <div className='flex min-h-screen flex-col items-center justify-between p-4 '>
    <div className='flex flex-col items-center justify-center w-full h-[calc(100vh-80px)]'>
-    <form
-     action={addUser}
-     autoComplete='off'
-     className='flex flex-col items-center gap-2 justify-center font-sono transition-all'>
-     <Input
-      icon={<Avatar className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
-      inputAttributes={{ type: 'text', name: 'username', placeholder: ' ' }}
-      label='Username'
-      labelAttributes={{ htmlFor: 'username' }}
-     />
-     <Input
-      icon={<Email className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
-      inputAttributes={{ type: 'email', name: 'email', placeholder: ' ' }}
-      label='Email'
-      labelAttributes={{ htmlFor: 'email' }}
-     />
-     <PwInput
-      icon={<Lock className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
-      inputAttributes={{ name: 'password', placeholder: '' }}
-      label='Password'
-      labelAttributes={{ htmlFor: 'password' }}
-     />
-     <PwInput
-      icon={<Lock className='text-fg-primary text-2xl absolute left-2 -translate-y-9 transition-transform' />}
-      inputAttributes={{ name: 'confirmPassword', placeholder: '' }}
-      label='Confirm Password'
-      labelAttributes={{ htmlFor: 'confirmPassword' }}
-     />
-     <Button variant='primary'>Sign Up</Button>
-    </form>
+    <SignupForm addUser={addUser} />
     <Link
      className='underline text-accent mt-12 text-sm hover:text-accent-light'
      href='/login'>
