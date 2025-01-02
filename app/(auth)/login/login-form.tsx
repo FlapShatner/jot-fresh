@@ -17,7 +17,7 @@ export default function LoginForm({ loginUser, guestUser }: { loginUser: (formDa
       <form
         action={formAction}
         autoComplete="off"
-        className="flex flex-col items-center gap-2 justify-center font-sono transition-all"
+        className="flex flex-col items-center gap-4 justify-center font-sono transition-all"
       >
         <Input
           icon={

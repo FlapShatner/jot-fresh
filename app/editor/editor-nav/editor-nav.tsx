@@ -20,7 +20,7 @@ async function EditorNav({ params }: { params: { nid: string } }) {
     <EditorNavHeader />
     <Search allNotes={allNotes} />
     <div className='relative flex-grow w-full bg-var-editor-bg pt-2 rounded-b-primary pr-1 '>
-     <div className='h-full flex absolute top-0 left-0 right-0'>
+     <div  style={{ scrollbarWidth: 'thin', scrollbarColor: '#373e49 #282C34' }} className='h-full flex absolute top-0 left-0 right-0 overflow-y-scroll'>
       <NavTreeShow>
        <NavTree
         params={params}

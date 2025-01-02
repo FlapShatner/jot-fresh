@@ -6,28 +6,25 @@ import Link from 'next/link'
 
 export default function Reset() {
  const [success, setSuccess] = useState(false)
- const [isLoading, setIsLoading] = useState(false)
  const [email, setEmail] = useState('')
-
+const [isLoading, setIsLoading] = useState(false)
  const handleSubmit = (formData: FormData) => {
-  setIsLoading(true)
+
   const email = formData.get('email')?.toString()
   if (!email) {
-   setIsLoading(false)
    return alert('Please enter an email')
   }
   handleSend(email)
  }
 
  async function handleSend(email: string) {
+
   const response = await resetPassword(email)
   if (!response || (typeof response === 'object' && 'error' in response)) {
-   setIsLoading(false)
-   return alert('There was an error. Please try again')
+   return alert(response.error || 'There was an error. Please try again')
   }
   setEmail(email)
   setSuccess(true)
-  setIsLoading(false)
  }
 
  return (
@@ -45,7 +42,7 @@ export default function Reset() {
       </div>
       <div className='text-sm'>
        <p>You may need to check your spam or junk folder</p>
-       <p> Your reset link will expire in 1 hour</p>
+       <p>Your reset link will expire in 1 hour</p>
       </div>
      </div>
     ) : (
@@ -61,15 +58,11 @@ export default function Reset() {
         className='w-full text-fg-primary bg-bg-primary border border-var-cyan-trans py-1 px-2 text-lg rounded-md hover:bg-bg-secondary '
        />
       </div>
-      {isLoading ? (
-       <div className='w-full bg-accent rounded-md py-2 mt-4 text-bg-primary font-bold border border-accent transition-all opacity-80 text-center'>
-        Sending...
-       </div>
-      ) : (
-       <button className='w-full bg-accent rounded-md py-2 mt-4 text-bg-primary font-bold border border-accent hover:bg-accent-light hover:border-accent-light transition-all'>
-        Send reset link
+  
+       <button onClick={() => setIsLoading(true)} className='w-full bg-accent rounded-md py-2 mt-4 text-bg-primary font-bold border border-accent hover:bg-accent-light hover:border-accent-light transition-all'>
+       {isLoading ? 'Sending...' : 'Send reset link'}
        </button>
-      )}
+     
 
       <Link
        className='w-full bg-bg-primary rounded-md py-2 mt-4 text-accent-light font-bold border border-accent hover:bg-var-editor-active hover:border-accent-light transition-all text-center'

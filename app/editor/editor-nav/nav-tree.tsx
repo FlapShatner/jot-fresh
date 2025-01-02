@@ -12,7 +12,7 @@ async function NavTree({ folders, notes, folderId, params }: { folders: FolderPl
 
  return (
   <div
-   style={{ scrollbarWidth: 'thin', scrollbarColor: '#373e49 #282C34' }}
+  
    className={cn('flex flex-col flex-grow items-start overflow-x-hidden', isRootChild && 'pb-8')}>
    {folders.map((folder) => {
     const isChild = folder.parentId !== rootFolder.id

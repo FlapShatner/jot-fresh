@@ -21,5 +21,5 @@ const Button = ({ children, variant }: Props) => {
   )
  }
 }
-
 export default Button
+

@@ -3,7 +3,7 @@ import { Body, Button, Container, Head, Html, Preview, Section, Link, Text } fro
 
 const ResetPasswordEmail = ({ resetLink }: { resetLink: string }) => {
  console.log(resetLink)
- const ifText = `If you don't want to change your password or didn&apos;t request this, just ignore and delete this message.`
+ const ifText = `If you don't want to change your password, just ignore and delete this message.`
  const ifText2 = `If link above doesn't work, copy and paste this address into your address bar:`
  return (
   <Html>

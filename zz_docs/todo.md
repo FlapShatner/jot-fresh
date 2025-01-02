@@ -3,8 +3,6 @@
 - tests
 - feature flags
 - nav scroll when content overflows y axis
-- make editor width responsive
-- hide nav sidebar when under a certain width
 - make guest account without persistence
 - persist order in tree
 - user interaction feedback / loading indicators / errors
@@ -48,6 +46,8 @@
 
 ## done
 
+- hide nav sidebar when under a certain width
+- make editor width responsive
 - language / syntax highlighting
 - handle saving an already saved file
 - syntax select menu item
