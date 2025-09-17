@@ -10,11 +10,12 @@ import { Toaster } from "@/components/ui/sonner";
 
 export default async function EditorLayout({
   children,
-  params,
+  params: paramsPromise,
 }: {
   children: React.ReactNode;
-  params: { [key: string]: string | undefined };
+  params: Promise<{ [key: string]: string | undefined }>;
 }) {
+  const params = await paramsPromise;
   const { user, session } = await validateRequest();
 
 
