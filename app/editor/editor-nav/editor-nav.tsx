@@ -8,7 +8,7 @@ import { getRootFolder } from '@/actions/folder-actions'
 import { getNotes } from '@/actions/note-actions'
 import Search from './search/search'
 
-async function EditorNav({ params }: { params: { nid: string } }) {
+async function EditorNav({ params }: { params: { nid?: string | null } }) {
  const rootFolder: FolderWithNotesAndFolders = await getRootFolder()
  const folders = rootFolder.folders ?? []
  const notes = rootFolder.notes ?? []

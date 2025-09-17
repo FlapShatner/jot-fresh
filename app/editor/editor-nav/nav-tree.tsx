@@ -6,7 +6,7 @@ import NavFolder from './nav-folder'
 import NavItem from './nav-item'
 import { getRootFolder } from '@/actions/folder-actions'
 
-async function NavTree({ folders, notes, folderId, params }: { folders: FolderPlus[]; notes: Note[]; folderId: string; params: { nid: string } }) {
+async function NavTree({ folders, notes, folderId, params }: { folders: FolderPlus[]; notes: Note[]; folderId: string; params: { nid?: string | null } }) {
  const rootFolder: FolderWithNotesAndFolders = await getRootFolder()
  const isRootChild = rootFolder.id === folderId
 
